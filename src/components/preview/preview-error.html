@@ -1,0 +1,33 @@
+<!--
+  Fast Track Preview - Error State Template
+  Spec: 010-tool-preview
+  Per contracts/preview-error.yaml
+
+  Error display when preview fails with fallback actions (FR-006, FR-007)
+-->
+
+<div class="preview-error" role="alert" aria-live="polite">
+  <div class="preview-error__header">
+    <span class="preview-error__icon">!</span>
+    <h3 class="preview-error__title">PREVIEW FAILED</h3>
+  </div>
+
+  <p class="preview-error__message">{error_message}</p>
+
+  <p class="preview-error__guidance">
+    The tool HTML could not be rendered. Download or copy the raw HTML to inspect locally.
+  </p>
+
+  <div class="preview-error__actions">
+    <button class="preview-error__action" data-action="download" aria-label="Download tool HTML file">
+      DOWNLOAD HTML
+    </button>
+    <button class="preview-error__action" data-action="copy" aria-label="Copy tool HTML to clipboard">
+      COPY HTML
+    </button>
+  </div>
+
+  <p class="preview-error__support">
+    If this issue persists, contact the Factory team.
+  </p>
+</div>

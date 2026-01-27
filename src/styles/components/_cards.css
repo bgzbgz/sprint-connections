@@ -1,0 +1,58 @@
+/**
+ * Fast Track Brand - Card Component
+ * Per contracts/layout.yaml
+ *
+ * RULES:
+ * - 3px solid black border
+ * - border-radius: 0 (sharp corners)
+ * - box-shadow: none
+ * - white background
+ */
+
+.ft-card {
+  background-color: var(--ft-color-white);
+  border: var(--ft-border);
+  padding: var(--ft-space-3);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.ft-card__title {
+  font-family: var(--ft-font-headline);
+  font-size: var(--ft-font-size-lg);
+  font-weight: var(--ft-font-weight-bold);
+  text-transform: uppercase;
+  line-height: var(--ft-line-height-tight);
+  margin-bottom: var(--ft-space-2);
+}
+
+.ft-card__meta {
+  font-family: var(--ft-font-mono);
+  font-size: var(--ft-font-size-xs);
+  text-transform: uppercase;
+  color: var(--ft-color-text-muted);
+  margin-bottom: var(--ft-space-2);
+}
+
+.ft-card__body {
+  font-family: var(--ft-font-body);
+  font-size: var(--ft-font-size-base);
+  line-height: var(--ft-line-height-normal);
+}
+
+.ft-card__actions {
+  margin-top: var(--ft-space-3);
+  display: flex;
+  gap: var(--ft-space-2);
+}
+
+/* Card on dark background */
+.ft-card--inverted {
+  background-color: var(--ft-color-black);
+  color: var(--ft-color-white);
+  border-color: var(--ft-color-white);
+}
+
+.ft-card--inverted .ft-card__meta {
+  color: var(--ft-color-grey);
+}

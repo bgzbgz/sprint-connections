@@ -1,0 +1,151 @@
+/**
+ * Fast Track Brand - Button Component
+ * Per contracts/buttons.yaml
+ *
+ * TYPES:
+ * - Primary: Yellow background, black text (CTAs)
+ * - Secondary: Black background, white text
+ * - Tertiary: Transparent, black border (ghost)
+ * - Icon: Transparent, no border
+ *
+ * RULES:
+ * - border-radius: 0 ALWAYS
+ * - Sentence case (Riforma)
+ * - Simple hover (color inversion)
+ * - Focus: yellow outline
+ */
+
+/* ========== BASE BUTTON ========== */
+.ft-button {
+  font-family: var(--ft-font-body);
+  font-size: var(--ft-font-size-base);
+  font-weight: var(--ft-font-weight-regular);
+  text-transform: none;
+  padding: var(--ft-space-2) var(--ft-space-3);
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ft-space-1);
+  text-decoration: none;
+  transition: background-color 0.1s ease-in-out;
+}
+
+.ft-button:focus {
+  outline: 3px solid var(--ft-color-yellow);
+  outline-offset: 2px;
+}
+
+.ft-button:disabled {
+  background-color: var(--ft-color-grey);
+  color: var(--ft-color-white);
+  cursor: not-allowed;
+}
+
+/* ========== PRIMARY BUTTON ========== */
+/* Yellow background, black text - for CTAs */
+.ft-button--primary {
+  background-color: var(--ft-color-yellow);
+  color: var(--ft-color-black);
+}
+
+.ft-button--primary:hover:not(:disabled) {
+  background-color: var(--ft-color-black);
+  color: var(--ft-color-white);
+}
+
+.ft-button--primary:active:not(:disabled) {
+  background-color: var(--ft-color-black);
+  color: var(--ft-color-white);
+}
+
+.ft-button--primary:focus {
+  outline-color: var(--ft-color-black);
+}
+
+/* ========== SECONDARY BUTTON ========== */
+/* Black background, white text */
+.ft-button--secondary {
+  background-color: var(--ft-color-black);
+  color: var(--ft-color-white);
+}
+
+.ft-button--secondary:hover:not(:disabled) {
+  background-color: var(--ft-color-yellow);
+  color: var(--ft-color-black);
+}
+
+.ft-button--secondary:active:not(:disabled) {
+  background-color: var(--ft-color-yellow);
+  color: var(--ft-color-black);
+}
+
+.ft-button--secondary:focus {
+  outline-color: var(--ft-color-yellow);
+}
+
+/* ========== TERTIARY BUTTON (GHOST) ========== */
+/* Transparent, black border */
+.ft-button--tertiary {
+  background-color: transparent;
+  color: var(--ft-color-black);
+  border: 3px solid var(--ft-color-black);
+}
+
+.ft-button--tertiary:hover:not(:disabled) {
+  background-color: var(--ft-color-black);
+  color: var(--ft-color-white);
+}
+
+.ft-button--tertiary:active:not(:disabled) {
+  background-color: var(--ft-color-black);
+  color: var(--ft-color-white);
+}
+
+.ft-button--tertiary:focus {
+  outline-color: var(--ft-color-yellow);
+}
+
+.ft-button--tertiary:disabled {
+  background-color: transparent;
+  color: var(--ft-color-grey);
+  border-color: var(--ft-color-grey);
+}
+
+/* ========== ICON BUTTON ========== */
+/* Transparent, no border - for close, menu, etc. */
+.ft-button--icon {
+  background-color: transparent;
+  color: var(--ft-color-black);
+  padding: var(--ft-space-1);
+  min-width: 40px;
+  min-height: 40px;
+}
+
+.ft-button--icon:hover:not(:disabled) {
+  background-color: var(--ft-color-yellow);
+  color: var(--ft-color-black);
+}
+
+.ft-button--icon:focus {
+  outline-color: var(--ft-color-yellow);
+}
+
+/* ========== BUTTON SIZES ========== */
+.ft-button--small {
+  font-size: var(--ft-font-size-sm);
+  padding: var(--ft-space-1) var(--ft-space-2);
+}
+
+.ft-button--large {
+  font-size: var(--ft-font-size-md);
+  padding: var(--ft-space-3) var(--ft-space-4);
+}
+
+/* ========== BUTTON GROUP ========== */
+.ft-button-group {
+  display: flex;
+  gap: var(--ft-space-2);
+}

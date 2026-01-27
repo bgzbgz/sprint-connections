@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fast Track Brand System - Demo</title>
+
+  <!-- Font Preload Links (critical for performance) -->
+  <link rel="preload" href="assets/fonts/Plaak3Trial-43-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/RiformaLL-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/MonumentGrotesk-Mono.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <!-- Header with F Mark -->
+  <header class="ft-header">
+    <nav class="ft-header__nav">
+      <a href="#" class="ft-header__nav-item ft-header__nav-item--active">Tools</a>
+      <a href="#" class="ft-header__nav-item">Factory</a>
+      <a href="#" class="ft-header__nav-item">Settings</a>
+    </nav>
+    <div class="ft-header__logo">
+      <img src="assets/images/FastTrack_F_White.png" alt="Fast Track">
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="ft-container">
+    <h1>BOSS OFFICE BRAND SYSTEM</h1>
+    <p class="ft-lead">Complete component library for Fast Track brand compliance.</p>
+
+    <!-- Color Palette Demo -->
+    <section class="ft-mt-6">
+      <h2>COLOR PALETTE</h2>
+      <span class="ft-label ft-mt-2" style="display: block;">4 Colors Only - No Exceptions</span>
+      <div class="ft-flex ft-gap-2 ft-mt-2 ft-flex-wrap">
+        <div class="ft-p-3" style="background: var(--ft-color-black); color: var(--ft-color-white); min-width: 120px;">
+          <span class="ft-meta">BLACK</span>
+          <p>#000000</p>
+        </div>
+        <div class="ft-p-3" style="background: var(--ft-color-white); border: var(--ft-border); min-width: 120px;">
+          <span class="ft-meta">WHITE</span>
+          <p>#FFFFFF</p>
+        </div>
+        <div class="ft-p-3" style="background: var(--ft-color-grey); color: var(--ft-color-white); min-width: 120px;">
+          <span class="ft-meta">GREY</span>
+          <p>#B2B2B2</p>
+        </div>
+        <div class="ft-p-3" style="background: var(--ft-color-yellow); min-width: 120px;">
+          <span class="ft-meta">YELLOW</span>
+          <p>#FFF469</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Typography Demo -->
+    <section class="ft-mt-6">
+      <h2>TYPOGRAPHY SYSTEM</h2>
+
+      <!-- Headlines -->
+      <div class="ft-mt-3">
+        <span class="ft-label">Headlines - Plaak Uppercase</span>
+        <h1 class="ft-mt-1">HEADING 1 - PAGE TITLE</h1>
+        <h2>HEADING 2 - SECTION</h2>
+        <h3>HEADING 3 - SUBSECTION</h3>
+        <h4>HEADING 4 - ITEM TITLE</h4>
+      </div>
+
+      <!-- Body Text -->
+      <div class="ft-mt-4">
+        <span class="ft-label">Body Text - Riforma Sentence Case</span>
+        <p class="ft-lead ft-mt-1">Lead paragraph using Riforma at 18px. This is for important introductory text.</p>
+        <p>Standard body copy at 16px. Short sentences. Direct communication. No fluff.</p>
+        <p class="ft-small">Small text at 14px for secondary information and helper text.</p>
+      </div>
+
+      <!-- Labels -->
+      <div class="ft-mt-4">
+        <span class="ft-label">Labels - Monument Mono Uppercase</span>
+        <div class="ft-flex ft-gap-2 ft-mt-2 ft-flex-wrap">
+          <span class="ft-badge ft-badge--accent">APPROVED</span>
+          <span class="ft-badge ft-badge--muted">PENDING</span>
+          <span class="ft-meta">LAST UPDATED: 2024-01-15</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cards Demo -->
+    <section class="ft-mt-6">
+      <h2>CARD COMPONENTS</h2>
+      <span class="ft-label ft-mt-2" style="display: block;">3px Black Border - No Rounded Corners</span>
+      <div class="ft-grid ft-mt-3">
+        <div class="ft-col-6">
+          <div class="ft-card">
+            <span class="ft-card__meta">TOOL ID: FT-2024-001</span>
+            <h3 class="ft-card__title">MARKET SIZE CALCULATOR</h3>
+            <p class="ft-card__body">Enterprise-grade market sizing tool. Ready for review.</p>
+            <div class="ft-card__actions">
+              <button class="ft-button ft-button--primary">Approve</button>
+              <button class="ft-button ft-button--tertiary">Preview</button>
+            </div>
+          </div>
+        </div>
+        <div class="ft-col-6">
+          <div class="ft-card">
+            <span class="ft-card__meta">TOOL ID: FT-2024-002</span>
+            <h3 class="ft-card__title">COMPETITOR ANALYSIS</h3>
+            <p class="ft-card__body">Automated competitor tracking and intelligence platform.</p>
+            <div class="ft-card__actions">
+              <span class="ft-text-muted">In Factory</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Buttons Demo -->
+    <section class="ft-mt-6">
+      <h2>BUTTON SYSTEM</h2>
+      <span class="ft-label ft-mt-2" style="display: block;">Sentence Case - No Rounded Corners</span>
+
+      <div class="ft-mt-3">
+        <span class="ft-meta">Primary - Yellow/Black (CTAs)</span>
+        <div class="ft-flex ft-gap-2 ft-mt-1 ft-flex-wrap">
+          <button class="ft-button ft-button--primary">Upload</button>
+          <button class="ft-button ft-button--primary">Approve</button>
+          <button class="ft-button ft-button--primary" disabled>Disabled</button>
+        </div>
+      </div>
+
+      <div class="ft-mt-3">
+        <span class="ft-meta">Secondary - Black/White</span>
+        <div class="ft-flex ft-gap-2 ft-mt-1 ft-flex-wrap">
+          <button class="ft-button ft-button--secondary">Reject</button>
+          <button class="ft-button ft-button--secondary">Cancel</button>
+          <button class="ft-button ft-button--secondary" disabled>Disabled</button>
+        </div>
+      </div>
+
+      <div class="ft-mt-3">
+        <span class="ft-meta">Tertiary - Ghost</span>
+        <div class="ft-flex ft-gap-2 ft-mt-1 ft-flex-wrap">
+          <button class="ft-button ft-button--tertiary">Preview</button>
+          <button class="ft-button ft-button--tertiary">View Details</button>
+          <button class="ft-button ft-button--tertiary" disabled>Disabled</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Forms Demo -->
+    <section class="ft-mt-6">
+      <h2>FORM COMPONENTS</h2>
+      <span class="ft-label ft-mt-2" style="display: block;">Black Borders - Yellow for Validation Errors (Not Red)</span>
+
+      <div class="ft-grid ft-mt-3">
+        <div class="ft-col-6">
+          <div class="ft-form-group">
+            <label class="ft-form-label ft-form-label--required">Tool Name</label>
+            <input type="text" class="ft-input" placeholder="Enter tool name">
+            <span class="ft-helper-text">Keep it short and descriptive.</span>
+          </div>
+
+          <div class="ft-form-group">
+            <label class="ft-form-label">Description</label>
+            <textarea class="ft-textarea" placeholder="Enter description"></textarea>
+          </div>
+
+          <div class="ft-form-group">
+            <label class="ft-form-label">Category</label>
+            <select class="ft-select">
+              <option>Select category</option>
+              <option>Analytics</option>
+              <option>Automation</option>
+              <option>Research</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="ft-col-6">
+          <div class="ft-form-group">
+            <label class="ft-form-label">Invalid Field (Yellow Border)</label>
+            <input type="text" class="ft-input ft-input--invalid" value="Invalid input">
+            <div class="ft-validation-message ft-validation-message--error">Field is required.</div>
+          </div>
+
+          <div class="ft-form-group">
+            <label class="ft-form-label">Disabled Field</label>
+            <input type="text" class="ft-input" value="Cannot edit" disabled>
+          </div>
+
+          <div class="ft-form-group">
+            <label class="ft-checkbox">
+              <input type="checkbox">
+              <span class="ft-checkbox__label">I accept the terms</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feedback States Demo -->
+    <section class="ft-mt-6">
+      <h2>FEEDBACK STATES</h2>
+      <span class="ft-label ft-mt-2" style="display: block;">No Red or Green - Yellow for Errors, Black for Success</span>
+
+      <div class="ft-grid ft-mt-3">
+        <div class="ft-col-6">
+          <span class="ft-meta ft-mb-1" style="display: block;">Error State (Yellow Background)</span>
+          <div class="ft-error">
+            <span class="ft-error__title">Upload Failed</span>
+            <span class="ft-error__message">File exceeds maximum size. Try again.</span>
+          </div>
+        </div>
+
+        <div class="ft-col-6">
+          <span class="ft-meta ft-mb-1" style="display: block;">Success State (Black Checkmark)</span>
+          <div class="ft-success ft-success--boxed">Tool approved and deployed.</div>
+        </div>
+      </div>
+
+      <div class="ft-grid ft-mt-3">
+        <div class="ft-col-6">
+          <span class="ft-meta ft-mb-1" style="display: block;">Warning State</span>
+          <div class="ft-warning">Review pending. Factory is processing.</div>
+        </div>
+
+        <div class="ft-col-6">
+          <span class="ft-meta ft-mb-1" style="display: block;">Info State</span>
+          <div class="ft-info">QA score will be available after processing.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Grid Demo -->
+    <section class="ft-mt-6">
+      <h2>12-COLUMN GRID</h2>
+      <span class="ft-label ft-mt-2" style="display: block;">Responsive: 12 → 8 → 4 Columns</span>
+
+      <div class="ft-grid ft-mt-3">
+        <div class="ft-col-3 ft-p-2 ft-bg-black ft-text-inverse">3</div>
+        <div class="ft-col-3 ft-p-2 ft-bg-black ft-text-inverse">3</div>
+        <div class="ft-col-3 ft-p-2 ft-bg-black ft-text-inverse">3</div>
+        <div class="ft-col-3 ft-p-2 ft-bg-black ft-text-inverse">3</div>
+      </div>
+
+      <div class="ft-grid ft-mt-2">
+        <div class="ft-col-6 ft-p-2 ft-bg-black ft-text-inverse">6</div>
+        <div class="ft-col-6 ft-p-2 ft-bg-black ft-text-inverse">6</div>
+      </div>
+
+      <div class="ft-grid ft-mt-2">
+        <div class="ft-col-4 ft-p-2 ft-bg-black ft-text-inverse">4</div>
+        <div class="ft-col-8 ft-p-2 ft-bg-black ft-text-inverse">8</div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="ft-mt-8 ft-py-4" style="border-top: var(--ft-border);">
+      <span class="ft-meta">FAST TRACK BRAND SYSTEM V1.0 | SPEC 005-BOSS-OFFICE-BRAND</span>
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!--
+  Fast Track Inbox - Item Card Template
+  Spec: 009-inbox-approved-tools
+  Per contracts/inbox-item.yaml
+
+  Layout:
+  ┌──────────────────────────────────────────────────┐
+  │ [TOOL NAME/ID]                    [RECEIVED AT]  │
+  │                                                   │
+  │ Job: [JOB_ID]                                    │
+  │ [QA SUMMARY]                                     │
+  └──────────────────────────────────────────────────┘
+
+  Typography:
+  - display_name: Plaak, UPPERCASE, bold, #000000
+  - received_at: Monument Grotesk Mono, UPPERCASE, #B2B2B2
+  - job_id: Monument Grotesk Mono, UPPERCASE, #B2B2B2
+  - qa_summary: Riforma, sentence case, #000000
+
+  Interactions:
+  - hover: border-color changes to #FFF469 (yellow accent)
+  - focus: yellow outline for accessibility
+  - click: entire card is clickable (future: navigate to detail)
+-->
+
+<article class="inbox-item" data-job-id="{{job_id}}" tabindex="0">
+  <div class="inbox-item__header">
+    <h3 class="inbox-item__title">{{display_name}}</h3>
+    <span class="inbox-item__time">{{received_at}}</span>
+  </div>
+  <div class="inbox-item__meta">
+    <span class="inbox-item__job-id">JOB: {{job_id}}</span>
+  </div>
+  <div class="inbox-item__footer">
+    <span class="inbox-item__qa">{{qa_summary}}</span>
+  </div>
+</article>

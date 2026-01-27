@@ -1,0 +1,38 @@
+/**
+ * Fast Track Brand - Color Tokens
+ * Per contracts/colors.yaml
+ *
+ * ONLY 4 COLORS ALLOWED:
+ * - Black #000000
+ * - White #FFFFFF
+ * - Grey #B2B2B2
+ * - Yellow #FFF469 (accent only, sparingly)
+ */
+
+:root {
+  /* ========== PRIMITIVE COLORS ========== */
+  --ft-color-black: #000000;
+  --ft-color-white: #FFFFFF;
+  --ft-color-grey: #B2B2B2;
+  --ft-color-yellow: #FFF469;
+
+  /* ========== SEMANTIC COLOR ALIASES ========== */
+  /* Background colors */
+  --ft-color-background: var(--ft-color-white);
+  --ft-color-background-inverted: var(--ft-color-black);
+
+  /* Text colors */
+  --ft-color-text-primary: var(--ft-color-black);
+  --ft-color-text-inverted: var(--ft-color-white);
+  --ft-color-text-muted: var(--ft-color-grey);
+
+  /* Interactive colors */
+  --ft-color-accent: var(--ft-color-yellow);
+  --ft-color-border: var(--ft-color-black);
+  --ft-color-disabled: var(--ft-color-grey);
+
+  /* Feedback colors (NO RED, NO GREEN) */
+  --ft-color-error-bg: var(--ft-color-yellow);
+  --ft-color-error-text: var(--ft-color-black);
+  --ft-color-success-text: var(--ft-color-black);
+}

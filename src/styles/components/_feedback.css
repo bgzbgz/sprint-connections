@@ -1,0 +1,112 @@
+/**
+ * Fast Track Brand - Feedback Components
+ * Per contracts/colors.yaml
+ *
+ * CRITICAL:
+ * - NO RED for errors - use yellow background
+ * - NO GREEN for success - use black checkmark
+ */
+
+/* ========== ERROR STATE ========== */
+/* Yellow background, black text (NOT RED) */
+.ft-error {
+  background-color: var(--ft-color-yellow);
+  color: var(--ft-color-black);
+  border: var(--ft-border);
+  padding: var(--ft-space-2) var(--ft-space-3);
+  font-family: var(--ft-font-body);
+  font-size: var(--ft-font-size-base);
+}
+
+.ft-error__title {
+  font-family: var(--ft-font-headline);
+  font-size: var(--ft-font-size-base);
+  text-transform: uppercase;
+  font-weight: var(--ft-font-weight-bold);
+  margin-bottom: var(--ft-space-1);
+}
+
+.ft-error__message {
+  font-family: var(--ft-font-body);
+}
+
+/* Inline error (for form validation) */
+.ft-error--inline {
+  background-color: transparent;
+  border: none;
+  padding: var(--ft-space-1) 0;
+  font-size: var(--ft-font-size-sm);
+  color: var(--ft-color-black);
+}
+
+/* ========== SUCCESS STATE ========== */
+/* Black checkmark, no green */
+.ft-success {
+  color: var(--ft-color-black);
+  font-family: var(--ft-font-body);
+  font-size: var(--ft-font-size-base);
+  display: flex;
+  align-items: center;
+  gap: var(--ft-space-1);
+}
+
+.ft-success::before {
+  content: '\2713'; /* Unicode checkmark */
+  font-weight: bold;
+  font-size: var(--ft-font-size-lg);
+}
+
+/* Success with background */
+.ft-success--boxed {
+  background-color: var(--ft-color-white);
+  border: var(--ft-border);
+  padding: var(--ft-space-2) var(--ft-space-3);
+}
+
+/* ========== WARNING STATE ========== */
+/* Yellow background (same as error - brand uses yellow for attention) */
+.ft-warning {
+  background-color: var(--ft-color-yellow);
+  color: var(--ft-color-black);
+  border: var(--ft-border);
+  padding: var(--ft-space-2) var(--ft-space-3);
+  font-family: var(--ft-font-body);
+}
+
+/* ========== INFO STATE ========== */
+/* Black border, white background */
+.ft-info {
+  background-color: var(--ft-color-white);
+  color: var(--ft-color-black);
+  border: var(--ft-border);
+  padding: var(--ft-space-2) var(--ft-space-3);
+  font-family: var(--ft-font-body);
+}
+
+/* ========== LOADING STATE ========== */
+.ft-loading {
+  color: var(--ft-color-grey);
+  font-family: var(--ft-font-mono);
+  font-size: var(--ft-font-size-xs);
+  text-transform: uppercase;
+}
+
+/* ========== EMPTY STATE ========== */
+.ft-empty {
+  text-align: center;
+  padding: var(--ft-space-6);
+  color: var(--ft-color-grey);
+}
+
+.ft-empty__title {
+  font-family: var(--ft-font-headline);
+  font-size: var(--ft-font-size-lg);
+  text-transform: uppercase;
+  color: var(--ft-color-black);
+  margin-bottom: var(--ft-space-2);
+}
+
+.ft-empty__message {
+  font-family: var(--ft-font-body);
+  font-size: var(--ft-font-size-base);
+}

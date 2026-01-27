@@ -1,0 +1,88 @@
+/**
+ * Fast Track Brand - Reset Stylesheet
+ * Per research.md - Brutalist reset enforcing brand constraints
+ *
+ * ENFORCES:
+ * - border-radius: 0 (no rounded corners)
+ * - box-shadow: none (no drop shadows)
+ * - transition: none (no fancy animations)
+ */
+
+/* ========== BOX MODEL RESET ========== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ========== BRAND CONSTRAINT ENFORCEMENT ========== */
+/* !important overrides ensure brand compliance even with third-party CSS */
+*,
+*::before,
+*::after {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Disable transitions except for buttons */
+*:not(.ft-button) {
+  transition: none !important;
+}
+
+/* ========== BASE ELEMENT RESET ========== */
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  line-height: var(--ft-line-height-normal);
+}
+
+/* ========== FORM ELEMENT RESET ========== */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  border-radius: 0;
+  border: var(--ft-border-width-normal) solid var(--ft-color-border);
+  background: transparent;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+}
+
+/* ========== MEDIA RESET ========== */
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ========== LIST RESET ========== */
+ul,
+ol {
+  list-style: none;
+}
+
+/* ========== LINK RESET ========== */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ========== TABLE RESET ========== */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}

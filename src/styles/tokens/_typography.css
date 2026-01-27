@@ -1,0 +1,39 @@
+/**
+ * Fast Track Brand - Typography Tokens
+ * Per contracts/typography.yaml
+ *
+ * FONT RULES:
+ * - Headlines: Plaak, UPPERCASE, bold
+ * - Body: Riforma, sentence case, regular
+ * - Labels: Monument Grotesk Mono, UPPERCASE
+ */
+
+:root {
+  /* ========== FONT FAMILIES ========== */
+  --ft-font-headline: 'Plaak', Impact, sans-serif;
+  --ft-font-body: 'Riforma', Helvetica, Arial, sans-serif;
+  --ft-font-mono: 'Monument Grotesk Mono', 'Courier New', monospace;
+
+  /* ========== FONT WEIGHTS ========== */
+  --ft-font-weight-regular: 400;
+  --ft-font-weight-bold: 700;
+
+  /* ========== FONT SIZES ========== */
+  --ft-font-size-xs: 12px;   /* Labels, captions, badges */
+  --ft-font-size-sm: 14px;   /* Meta text, helper text */
+  --ft-font-size-base: 16px; /* Body copy, form inputs */
+  --ft-font-size-md: 18px;   /* Lead paragraphs */
+  --ft-font-size-lg: 24px;   /* Section headings, card titles */
+  --ft-font-size-xl: 32px;   /* Page titles */
+  --ft-font-size-2xl: 48px;  /* Hero headlines */
+
+  /* ========== LINE HEIGHTS ========== */
+  --ft-line-height-tight: 1.2;   /* Headlines */
+  --ft-line-height-normal: 1.5;  /* Body copy */
+  --ft-line-height-relaxed: 1.75; /* Long-form reading */
+
+  /* ========== TEXT TRANSFORMS ========== */
+  --ft-text-transform-headline: uppercase;
+  --ft-text-transform-label: uppercase;
+  --ft-text-transform-body: none;
+}

@@ -1,0 +1,435 @@
+/**
+ * Fast Track Pre-Submission Questionnaire - Styles
+ * Spec: 014-pre-submission-questionnaire
+ *
+ * RULES:
+ * - Reuses existing Fast Track CSS classes
+ * - Black background, yellow accents
+ * - No rounded corners
+ * - Plaak headings
+ */
+
+/* ========== QUESTIONNAIRE CONTAINER ========== */
+
+.ft-questionnaire {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: var(--ft-space-4);
+}
+
+/* ========== PROGRESS INDICATOR ========== */
+
+.ft-questionnaire__progress {
+  display: flex;
+  justify-content: center;
+  gap: var(--ft-space-2);
+  margin-bottom: var(--ft-space-4);
+}
+
+.ft-questionnaire__progress-step {
+  width: 40px;
+  height: 4px;
+  background-color: var(--ft-color-grey);
+  transition: background-color 0.2s ease;
+}
+
+.ft-questionnaire__progress-step--active {
+  background-color: var(--ft-color-yellow);
+}
+
+.ft-questionnaire__progress-step--completed {
+  background-color: var(--ft-color-white);
+}
+
+.ft-questionnaire__progress-text {
+  text-align: center;
+  margin-bottom: var(--ft-space-3);
+}
+
+/* ========== STEP CONTAINER ========== */
+
+.ft-questionnaire__step {
+  background-color: var(--ft-color-black);
+  border: var(--ft-border);
+  padding: var(--ft-space-4);
+}
+
+.ft-questionnaire__step[hidden] {
+  display: none;
+}
+
+.ft-questionnaire__question {
+  font-family: var(--ft-font-display);
+  font-size: var(--ft-font-size-lg);
+  text-transform: uppercase;
+  color: var(--ft-color-white);
+  margin-bottom: var(--ft-space-3);
+  line-height: 1.3;
+}
+
+/* ========== TEXT INPUT ========== */
+
+.ft-questionnaire__input-wrapper {
+  position: relative;
+  margin-bottom: var(--ft-space-2);
+}
+
+.ft-questionnaire__input-wrapper[hidden] {
+  display: none;
+}
+
+.ft-questionnaire__textarea {
+  width: 100%;
+  min-height: 120px;
+  font-family: var(--ft-font-body);
+  font-size: var(--ft-font-size-base);
+  color: var(--ft-color-black);
+  background-color: var(--ft-color-white);
+  border: 2px solid var(--ft-color-black);
+  border-radius: 0;
+  padding: var(--ft-space-2);
+  resize: vertical;
+}
+
+.ft-questionnaire__textarea:focus {
+  outline: none;
+  border-color: var(--ft-color-yellow);
+}
+
+.ft-questionnaire__textarea--invalid {
+  border-color: var(--ft-color-yellow);
+  border-width: 3px;
+}
+
+.ft-questionnaire__char-count {
+  font-family: var(--ft-font-mono);
+  font-size: var(--ft-font-size-xs);
+  color: var(--ft-color-grey);
+  text-align: right;
+  margin-top: var(--ft-space-1);
+}
+
+.ft-questionnaire__char-count--warning {
+  color: var(--ft-color-yellow);
+}
+
+/* ========== CHECKBOX GROUP ========== */
+
+.ft-questionnaire__checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ft-space-2);
+}
+
+.ft-questionnaire__checkbox-group[hidden] {
+  display: none;
+}
+
+.ft-questionnaire__checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: var(--ft-space-2);
+  padding: var(--ft-space-2);
+  background-color: var(--ft-color-white);
+  border: 2px solid var(--ft-color-black);
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.ft-questionnaire__checkbox-item:hover {
+  border-color: var(--ft-color-grey);
+}
+
+.ft-questionnaire__checkbox-item--selected {
+  border-color: var(--ft-color-yellow);
+  background-color: var(--ft-color-yellow);
+}
+
+.ft-questionnaire__checkbox-input {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--ft-color-black);
+  border-radius: 0;
+  appearance: none;
+  background-color: var(--ft-color-white);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.ft-questionnaire__checkbox-input:checked {
+  background-color: var(--ft-color-black);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23FFF' d='M10 3L4.5 8.5 2 6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.ft-questionnaire__checkbox-label {
+  font-family: var(--ft-font-body);
+  font-size: var(--ft-font-size-base);
+  color: var(--ft-color-black);
+}
+
+/* ========== VALIDATION ERROR ========== */
+
+.ft-questionnaire__error {
+  background-color: var(--ft-color-yellow);
+  color: var(--ft-color-black);
+  padding: var(--ft-space-2);
+  margin-top: var(--ft-space-2);
+  font-family: var(--ft-font-body);
+  font-size: var(--ft-font-size-sm);
+}
+
+.ft-questionnaire__error--hidden {
+  display: none;
+}
+
+/* ========== NAVIGATION BUTTONS ========== */
+
+.ft-questionnaire__nav {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--ft-space-2);
+  margin-top: var(--ft-space-4);
+}
+
+.ft-questionnaire__nav--single {
+  justify-content: flex-end;
+}
+
+/* ========== REVIEW SCREEN ========== */
+
+.ft-questionnaire__review {
+  background-color: var(--ft-color-black);
+  border: var(--ft-border);
+  padding: var(--ft-space-4);
+}
+
+.ft-questionnaire__review[hidden] {
+  display: none;
+}
+
+.ft-questionnaire__review-title {
+  font-family: var(--ft-font-display);
+  font-size: var(--ft-font-size-xl);
+  text-transform: uppercase;
+  color: var(--ft-color-white);
+  margin-bottom: var(--ft-space-4);
+}
+
+.ft-questionnaire__review-item {
+  border-bottom: 1px solid var(--ft-color-grey);
+  padding: var(--ft-space-3) 0;
+}
+
+.ft-questionnaire__review-item:last-child {
+  border-bottom: none;
+}
+
+.ft-questionnaire__review-label {
+  font-family: var(--ft-font-mono);
+  font-size: var(--ft-font-size-xs);
+  text-transform: uppercase;
+  color: var(--ft-color-grey);
+  margin-bottom: var(--ft-space-1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ft-questionnaire__review-answer {
+  font-family: var(--ft-font-body);
+  font-size: var(--ft-font-size-base);
+  color: var(--ft-color-white);
+  line-height: 1.5;
+}
+
+.ft-questionnaire__review-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ft-space-1);
+  margin-top: var(--ft-space-1);
+}
+
+.ft-questionnaire__review-tag {
+  background-color: var(--ft-color-yellow);
+  color: var(--ft-color-black);
+  padding: var(--ft-space-1) var(--ft-space-2);
+  font-family: var(--ft-font-mono);
+  font-size: var(--ft-font-size-xs);
+  text-transform: uppercase;
+}
+
+.ft-questionnaire__edit-btn {
+  font-family: var(--ft-font-mono);
+  font-size: var(--ft-font-size-xs);
+  text-transform: uppercase;
+  color: var(--ft-color-yellow);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.ft-questionnaire__edit-btn:hover {
+  color: var(--ft-color-white);
+}
+
+/* ========== SUCCESS MESSAGE ========== */
+
+.ft-questionnaire__success {
+  background-color: var(--ft-color-black);
+  border: 3px solid var(--ft-color-yellow);
+  padding: var(--ft-space-4);
+  text-align: center;
+  margin-bottom: var(--ft-space-3);
+}
+
+.ft-questionnaire__success-icon {
+  font-size: var(--ft-font-size-xl);
+  margin-bottom: var(--ft-space-2);
+}
+
+.ft-questionnaire__success-text {
+  font-family: var(--ft-font-display);
+  font-size: var(--ft-font-size-lg);
+  text-transform: uppercase;
+  color: var(--ft-color-yellow);
+}
+
+.ft-questionnaire__success--hidden {
+  display: none;
+}
+
+/* ========== SUBMIT BUTTON ========== */
+
+.ft-questionnaire__submit {
+  width: 100%;
+  margin-top: var(--ft-space-4);
+}
+
+.ft-questionnaire__submit--loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.ft-questionnaire__submit--loading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--ft-color-black);
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: ft-spin 0.8s linear infinite;
+  margin-left: var(--ft-space-2);
+}
+
+@keyframes ft-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ========== DROPZONE ========== */
+
+.ft-questionnaire__dropzone-section {
+  margin-top: var(--ft-space-3);
+  padding-top: var(--ft-space-3);
+  border-top: 1px solid var(--ft-color-grey);
+}
+
+.ft-questionnaire__dropzone {
+  border: 2px dashed var(--ft-color-grey);
+  padding: var(--ft-space-3);
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  position: relative;
+}
+
+.ft-questionnaire__dropzone:hover {
+  border-color: var(--ft-color-yellow);
+}
+
+.ft-questionnaire__dropzone--drag-over {
+  border-color: var(--ft-color-yellow);
+  background-color: rgba(255, 244, 105, 0.1);
+}
+
+.ft-questionnaire__dropzone-content {
+  pointer-events: none;
+}
+
+.ft-questionnaire__dropzone-text {
+  font-family: var(--ft-font-body);
+  font-size: var(--ft-font-size-base);
+  color: var(--ft-color-white);
+  margin: 0 0 var(--ft-space-1) 0;
+}
+
+.ft-questionnaire__file-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.ft-questionnaire__dropzone-file {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--ft-space-2);
+  background-color: var(--ft-color-white);
+}
+
+.ft-questionnaire__dropzone-file[hidden] {
+  display: none;
+}
+
+.ft-questionnaire__file-info {
+  display: flex;
+  align-items: center;
+  gap: var(--ft-space-2);
+}
+
+.ft-questionnaire__file-name {
+  font-family: var(--ft-font-body);
+  font-size: var(--ft-font-size-base);
+  color: var(--ft-color-black);
+}
+
+.ft-questionnaire__remove-file {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: var(--ft-color-black);
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ft-questionnaire__remove-file:hover {
+  color: var(--ft-color-grey);
+}
+
+/* ========== LOADING SPINNER ========== */
+
+.ft-questionnaire__spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--ft-color-grey);
+  border-top-color: var(--ft-color-yellow);
+  border-radius: 50%;
+  animation: ft-spin 0.8s linear infinite;
+  margin-right: var(--ft-space-2);
+}

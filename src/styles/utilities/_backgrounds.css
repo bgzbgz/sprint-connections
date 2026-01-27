@@ -1,0 +1,26 @@
+/**
+ * Fast Track Brand - Background Utility Classes
+ * Per contracts/colors.yaml
+ *
+ * ONLY 4 BACKGROUNDS ALLOWED:
+ * - White (default)
+ * - Black (inverted)
+ * - Yellow (accent - sparingly)
+ * - Grey (disabled only)
+ */
+
+.ft-bg-white {
+  background-color: var(--ft-color-white);
+}
+
+.ft-bg-black {
+  background-color: var(--ft-color-black);
+}
+
+.ft-bg-accent {
+  background-color: var(--ft-color-yellow);
+}
+
+.ft-bg-muted {
+  background-color: var(--ft-color-grey);
+}

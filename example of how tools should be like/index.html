@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Sprint - Fast Track Program</title>
+    <link rel="icon" type="image/png" href="favicon/favicon-16x16.png">
+    
+    <style>
+        @font-face {
+            font-family: 'Plaak';
+            src: url('fonts/Plaak3Trial-43-Bold.otf') format('opentype');
+            font-weight: bold;
+        }
+        @font-face {
+            font-family: 'Riforma';
+            src: url('fonts/RiformaLL-Regular.otf') format('opentype');
+        }
+        @font-face {
+            font-family: 'Monument';
+            src: url('fonts/MonumentGrotesk-Mono.otf') format('opentype');
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Riforma', sans-serif;
+            background: #000;
+            color: #fff;
+            line-height: 1.6;
+        }
+        
+        .plaak {
+            font-family: 'Plaak', sans-serif;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+        
+        .monument {
+            font-family: 'Monument', monospace;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('cover image for energy tool.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .logo {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            width: 80px;
+            height: 80px;
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 72px;
+            margin-bottom: 24px;
+        }
+        
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 60px;
+            opacity: 0.9;
+        }
+        
+        .flow-section {
+            background: #1a1a1a;
+            border: 2px solid #fff;
+            padding: 40px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .flow-number {
+            position: absolute;
+            top: -20px;
+            left: 40px;
+            background: #000;
+            padding: 8px 20px;
+            font-family: 'Monument';
+            font-size: 14px;
+            border: 2px solid #fff;
+        }
+        
+        .flow-title {
+            font-family: 'Plaak';
+            font-size: 42px;
+            margin-bottom: 16px;
+            margin-top: 20px;
+        }
+        
+        .flow-desc {
+            font-size: 20px;
+            margin-bottom: 24px;
+            opacity: 0.8;
+        }
+        
+        .flow-meta {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 24px;
+            font-size: 14px;
+        }
+        
+        .flow-meta div {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .flow-meta strong {
+            font-family: 'Monument';
+            font-size: 11px;
+            opacity: 0.6;
+            margin-bottom: 4px;
+        }
+        
+        .btn-tool {
+            background: #fff;
+            color: #000;
+            border: 3px solid #fff;
+            padding: 20px 40px;
+            font-family: 'Plaak';
+            font-size: 24px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+        }
+        
+        .btn-tool:hover {
+            background: #FFF469;
+            border-color: #FFF469;
+            transform: scale(1.05);
+        }
+        
+        .btn-guru {
+            background: #000;
+            color: #fff;
+            border: 3px solid #fff;
+        }
+        
+        .btn-guru:hover {
+            background: #fff;
+            color: #000;
+        }
+        
+        .arrow-down {
+            text-align: center;
+            font-size: 48px;
+            margin: 20px 0;
+            opacity: 0.5;
+        }
+        
+        .system-diagram {
+            background: #000;
+            border: 2px solid #fff;
+            padding: 40px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .diagram-step {
+            display: inline-block;
+            padding: 20px 40px;
+            border: 2px solid #fff;
+            margin: 10px;
+            min-width: 200px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <img src="logo/FastTrack_F_White.png" alt="Fast Track" class="logo">
+        
+        <div class="hero-content">
+            <h1 class="plaak">ENERGY SPRINT</h1>
+            <p class="monument">Creating Energy in the Body and Mind</p>
+            <p>A complete system to transform individual energy protocols into collective team strategy</p>
+            
+            <!-- System Overview -->
+            <div class="system-diagram">
+                <h2 class="plaak" style="font-size: 36px; margin-bottom: 40px;">THE COMPLETE SYSTEM</h2>
+                
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
+                    <div class="diagram-step">
+                        <div class="monument" style="font-size: 11px; opacity: 0.6;">STEP 1</div>
+                        <div class="plaak" style="font-size: 24px; margin: 10px 0;">INDIVIDUAL</div>
+                        <div style="opacity: 0.8;">Team members complete protocols</div>
+                    </div>
+                    
+                    <div style="font-size: 36px;">↓</div>
+                    
+                    <div class="diagram-step">
+                        <div class="monument" style="font-size: 11px; opacity: 0.6;">STEP 2</div>
+                        <div class="plaak" style="font-size: 24px; margin: 10px 0;">GURU REVIEW</div>
+                        <div style="opacity: 0.8;">Guru reviews all submissions</div>
+                    </div>
+                    
+                    <div style="font-size: 36px;">↓</div>
+                    
+                    <div class="diagram-step">
+                        <div class="monument" style="font-size: 11px; opacity: 0.6;">STEP 3</div>
+                        <div class="plaak" style="font-size: 24px; margin: 10px 0;">TEAM MEETING</div>
+                        <div style="opacity: 0.8;">Transform insights into strategy</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 60px;">
+                <p class="monument" style="font-size: 14px; opacity: 0.6; margin-bottom: 20px;">SELECT YOUR ROLE</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- STEP 1: Individual Tool -->
+    <div style="max-width: 1200px; margin: 60px auto; padding: 0 40px;">
+        <div class="flow-section animate-in">
+            <div class="flow-number">[STEP 1]</div>
+            <div class="flow-title">Individual Energy Protocol</div>
+            <div class="flow-desc">
+                Design your complete energy system across Sleep, Food, Movement, and Brain Use. 
+                Create ONE KEY HABIT for each pillar with trigger-routine-reward-accountability framework.
+            </div>
+            
+            <div class="flow-meta">
+                <div>
+                    <strong>WHO</strong>
+                    <span>All Team Members</span>
+                </div>
+                <div>
+                    <strong>WHEN</strong>
+                    <span>Before Team Meeting</span>
+                </div>
+                <div>
+                    <strong>TIME</strong>
+                    <span>45 Minutes</span>
+                </div>
+                <div>
+                    <strong>OUTPUT</strong>
+                    <span>Personal Energy Protocol</span>
+                </div>
+            </div>
+            
+            <a href="energy-individual-tool.html" class="btn-tool">
+                START INDIVIDUAL PROTOCOL →
+            </a>
+        </div>
+        
+        <div class="arrow-down">↓</div>
+        
+        <!-- STEP 2: Guru Dashboard -->
+        <div class="flow-section animate-in" style="animation-delay: 0.2s;">
+            <div class="flow-number">[STEP 2]</div>
+            <div class="flow-title">Guru Dashboard</div>
+            <div class="flow-desc">
+                View all team submissions in one place. See team energy patterns, identify weakest pillars, 
+                and prepare for the team meeting. Launch team meeting with one click.
+            </div>
+            
+            <div class="flow-meta">
+                <div>
+                    <strong>WHO</strong>
+                    <span>Guru Only</span>
+                </div>
+                <div>
+                    <strong>WHEN</strong>
+                    <span>After Team Submits</span>
+                </div>
+                <div>
+                    <strong>TIME</strong>
+                    <span>15 Minutes</span>
+                </div>
+                <div>
+                    <strong>OUTPUT</strong>
+                    <span>Team Energy Overview</span>
+                </div>
+            </div>
+            
+            <a href="energy-guru-dashboard.html" class="btn-tool btn-guru">
+                OPEN GURU DASHBOARD →
+            </a>
+        </div>
+        
+        <div class="arrow-down">↓</div>
+        
+        <!-- STEP 3: Team Meeting -->
+        <div class="flow-section animate-in" style="animation-delay: 0.4s;">
+            <div class="flow-number">[STEP 3]</div>
+            <div class="flow-title">Team Meeting Facilitation</div>
+            <div class="flow-desc">
+                Transform individual insights into collective team energy strategy. 
+                Review team data, discuss challenges, create rituals, and assign accountability partners.
+            </div>
+            
+            <div class="flow-meta">
+                <div>
+                    <strong>WHO</strong>
+                    <span>Entire Team + Guru</span>
+                </div>
+                <div>
+                    <strong>WHEN</strong>
+                    <span>During Team Meeting</span>
+                </div>
+                <div>
+                    <strong>TIME</strong>
+                    <span>60 Minutes</span>
+                </div>
+                <div>
+                    <strong>OUTPUT</strong>
+                    <span>Team Energy Strategy</span>
+                </div>
+            </div>
+            
+            <div style="padding: 20px; background: rgba(255,255,255,0.1); margin-bottom: 20px; border-left: 3px solid #FFF469;">
+                <strong style="display: block; margin-bottom: 8px;">⚠️ NOTE:</strong>
+                This tool auto-launches from the Guru Dashboard when you click "START TEAM MEETING".
+                <br>Or you can access it directly if you have a company ID.
+            </div>
+            
+            <a href="energy-team-meeting-tool.html" class="btn-tool" style="opacity: 0.7;">
+                DIRECT ACCESS (ADVANCED) →
+            </a>
+        </div>
+    </div>
+    
+    <!-- Footer Info -->
+    <div style="background: #1a1a1a; border-top: 2px solid #fff; padding: 60px 40px; margin-top: 80px;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 class="plaak" style="font-size: 36px; margin-bottom: 24px;">How It Works</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 40px;">
+                <div>
+                    <div class="monument" style="font-size: 11px; opacity: 0.6; margin-bottom: 8px;">INTEGRATION</div>
+                    <p style="font-size: 16px;">All three tools share the same database. Data flows seamlessly from individual protocols to team strategy.</p>
+                </div>
+                <div>
+                    <div class="monument" style="font-size: 11px; opacity: 0.6; margin-bottom: 8px;">AUTO-SAVE</div>
+                    <p style="font-size: 16px;">Your progress is automatically saved every 2 seconds. Come back anytime to continue where you left off.</p>
+                </div>
+                <div>
+                    <div class="monument" style="font-size: 11px; opacity: 0.6; margin-bottom: 8px;">PRIVACY</div>
+                    <p style="font-size: 16px;">Data is stored securely and only accessible by your team and assigned Guru. Each company's data is isolated.</p>
+                </div>
+            </div>
+            
+            <div style="padding: 30px; background: #000; border: 2px solid #fff;">
+                <h3 class="plaak" style="font-size: 24px; margin-bottom: 16px;">Need Help?</h3>
+                <p style="margin-bottom: 16px;">
+                    <strong>Team Members:</strong> Start with the Individual Protocol tool. Complete before your team meeting.<br>
+                    <strong>Gurus:</strong> Use the Guru Dashboard to review submissions and start the team meeting.<br>
+                    <strong>Questions:</strong> Contact your Fast Track program administrator.
+                </p>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px; opacity: 0.5; font-size: 12px;" class="monument">
+                FAST TRACK PROGRAM • ENERGY SPRINT • VERSION 1.0
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

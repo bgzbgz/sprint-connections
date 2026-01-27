@@ -1,0 +1,23 @@
+<!--
+  Fast Track Preview - Iframe Container Template
+  Spec: 010-tool-preview
+  Per contracts/preview-frame.yaml
+
+  Sandboxed iframe for rendering tool_html
+  SECURITY: sandbox="allow-scripts allow-modals" - NO allow-same-origin (SR-001)
+  Uses blob URL for content isolation (SR-002)
+-->
+
+<div class="preview-frame">
+  <div class="preview-frame__container">
+    <iframe
+      class="preview-frame__iframe"
+      src="{blobUrl}"
+      sandbox="allow-scripts allow-modals"
+      title="Tool Preview"
+    ></iframe>
+  </div>
+  <div class="preview-frame__loading" aria-hidden="true">
+    <span class="preview-frame__loading-text">RENDERING PREVIEW...</span>
+  </div>
+</div>

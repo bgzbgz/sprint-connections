@@ -1,0 +1,28 @@
+/**
+ * Fast Track Brand - Border Tokens
+ * Per data-model.md and contracts/layout.yaml
+ *
+ * CRITICAL: border-radius MUST be 0 always
+ * NO rounded corners, NO drop shadows
+ */
+
+:root {
+  /* ========== BORDER WIDTHS ========== */
+  --ft-border-width-thin: 1px;   /* Subtle separators */
+  --ft-border-width-normal: 2px; /* Standard borders */
+  --ft-border-width-thick: 3px;  /* Cards, containers, emphasis */
+
+  /* ========== BORDER RADIUS (ALWAYS ZERO) ========== */
+  --ft-border-radius: 0;
+
+  /* ========== BORDER COLORS ========== */
+  --ft-border-color: var(--ft-color-black);
+
+  /* ========== COMPOSITE BORDER VALUES ========== */
+  --ft-border: 3px solid var(--ft-color-black);
+  --ft-border-thin: 1px solid var(--ft-color-black);
+  --ft-border-focus: 3px solid var(--ft-color-yellow);
+
+  /* ========== SHADOWS (NONE ALLOWED) ========== */
+  --ft-shadow: none;
+}

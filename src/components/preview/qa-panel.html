@@ -1,0 +1,47 @@
+<!--
+  Fast Track Preview - QA Panel Template
+  Spec: 010-tool-preview
+  Per contracts/qa-panel.yaml
+
+  Display QA report alongside preview (FR-004)
+-->
+
+<aside class="qa-panel" role="complementary" aria-label="QA Report Panel">
+  <header class="qa-panel__header">
+    <h2 class="qa-panel__title">QA REPORT</h2>
+    <span class="qa-panel__status qa-panel__status--{status}">
+      {status}
+    </span>
+  </header>
+
+  <div class="qa-panel__content">
+    <!-- Score Section -->
+    <div class="qa-panel__section">
+      <span class="qa-panel__label">SCORE</span>
+      <span class="qa-panel__value">{score}/100</span>
+    </div>
+
+    <!-- Passed Checks -->
+    <div class="qa-panel__section">
+      <span class="qa-panel__label">PASSED</span>
+      <ul class="qa-panel__list qa-panel__list--passed">
+        {passed_checks}
+      </ul>
+    </div>
+
+    <!-- Failed Checks / Violations -->
+    <div class="qa-panel__section">
+      <span class="qa-panel__label">VIOLATIONS</span>
+      <ul class="qa-panel__list qa-panel__list--failed">
+        {failed_checks}
+      </ul>
+      <!-- OR if empty: <p class="qa-panel__empty">No violations</p> -->
+    </div>
+
+    <!-- Notes (if available) -->
+    <div class="qa-panel__section">
+      <span class="qa-panel__label">NOTES</span>
+      <p class="qa-panel__notes">{notes}</p>
+    </div>
+  </div>
+</aside>

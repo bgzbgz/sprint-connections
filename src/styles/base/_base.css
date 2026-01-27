@@ -1,0 +1,36 @@
+/**
+ * Fast Track Brand - Base Element Styles
+ * Enforces brand colors on all elements
+ */
+
+/* ========== DOCUMENT ROOT ========== */
+html {
+  background-color: var(--ft-color-background);
+  color: var(--ft-color-text-primary);
+}
+
+body {
+  font-family: var(--ft-font-body);
+  font-size: var(--ft-font-size-base);
+  font-weight: var(--ft-font-weight-regular);
+  line-height: var(--ft-line-height-normal);
+  background-color: var(--ft-color-background);
+  color: var(--ft-color-text-primary);
+}
+
+/* ========== MAIN CONTAINER ========== */
+.ft-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: var(--ft-space-4);
+}
+
+/* ========== SECTIONS ========== */
+.ft-section {
+  padding: var(--ft-space-6) 0;
+}
+
+.ft-section--inverted {
+  background-color: var(--ft-color-background-inverted);
+  color: var(--ft-color-text-inverted);
+}

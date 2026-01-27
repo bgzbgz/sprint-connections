@@ -1,0 +1,71 @@
+<!--
+  Fast Track Pre-Submission Questionnaire - Review Step Template
+  Spec: 014-pre-submission-questionnaire
+
+  BRAND RULES:
+  - Black background, yellow accents
+  - Plaak headings (uppercase)
+  - No rounded corners
+-->
+
+<div class="ft-questionnaire__review" id="review-container">
+  <h2 class="ft-questionnaire__review-title">Review Your Answers</h2>
+
+  <!-- Answer 1: Decision -->
+  <div class="ft-questionnaire__review-item">
+    <div class="ft-questionnaire__review-label">
+      <span>1. WHAT DECISION SHOULD THE USER MAKE?</span>
+      <button type="button" class="ft-questionnaire__edit-btn" data-edit-step="1">Edit</button>
+    </div>
+    <div class="ft-questionnaire__review-answer" id="review-decision">
+      <!-- Answer populated by JS -->
+    </div>
+  </div>
+
+  <!-- Answer 2: Teaching -->
+  <div class="ft-questionnaire__review-item">
+    <div class="ft-questionnaire__review-label">
+      <span>2. WHAT WILL THIS TOOL TEACH THEM?</span>
+      <button type="button" class="ft-questionnaire__edit-btn" data-edit-step="2">Edit</button>
+    </div>
+    <div class="ft-questionnaire__review-answer" id="review-teaching">
+      <!-- Answer populated by JS -->
+    </div>
+  </div>
+
+  <!-- Answer 3: Input Types -->
+  <div class="ft-questionnaire__review-item">
+    <div class="ft-questionnaire__review-label">
+      <span>3. WHAT INPUTS SHOULD THE USER PROVIDE?</span>
+      <button type="button" class="ft-questionnaire__edit-btn" data-edit-step="3">Edit</button>
+    </div>
+    <div class="ft-questionnaire__review-tags" id="review-input-types">
+      <!-- Tags populated by JS -->
+    </div>
+  </div>
+
+  <!-- Answer 4: Scoring Criteria -->
+  <div class="ft-questionnaire__review-item">
+    <div class="ft-questionnaire__review-label">
+      <span>4. WHAT MAKES SOMEONE SCORE HIGH VS LOW?</span>
+      <button type="button" class="ft-questionnaire__edit-btn" data-edit-step="4">Edit</button>
+    </div>
+    <div class="ft-questionnaire__review-answer" id="review-scoring">
+      <!-- Answer populated by JS -->
+    </div>
+  </div>
+
+  <!-- Error Message (hidden by default) -->
+  <div class="ft-questionnaire__error ft-questionnaire__error--hidden" id="submit-error">
+    Unable to submit. Please try again.
+  </div>
+
+  <!-- Submit Button -->
+  <button
+    type="button"
+    class="ft-button ft-button--primary ft-questionnaire__submit"
+    id="submit-btn"
+  >
+    Submit Tool Request
+  </button>
+</div>

@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Core Activities & Processes | Fast Track</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @font-face {
+            font-family: 'Plaak';
+            src: url('fonts/Plaak3Trial-43-Bold.otf') format('opentype');
+            font-weight: bold;
+        }
+        
+        @font-face {
+            font-family: 'Riforma';
+            src: url('fonts/RiformaLL-Regular.otf') format('opentype');
+            font-weight: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Riforma', -apple-system, sans-serif;
+            font-size: 16px;
+            color: #000000;
+            background: #FFFFFF;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .plaak {
+            font-family: 'Plaak', sans-serif;
+            font-weight: bold;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #000000;
+        }
+
+        .worksheet-input {
+            border: 1px solid #E0E0E0;
+            padding: 12px 16px;
+            font-family: 'Riforma', sans-serif;
+            font-size: 16px;
+            transition: border-color 0.2s ease;
+        }
+
+        .worksheet-input:focus {
+            border-color: #000000;
+        }
+
+        .section-box {
+            border: 2px solid #E0E0E0;
+            background: white;
+        }
+
+        .context-box {
+            background: #F8F8F8;
+            border-left: 4px solid #000000;
+        }
+
+        .numbered-section {
+            background: #000000;
+            color: #FFFFFF;
+            padding: 10px 16px;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .smooth {
+            transition: all 0.2s ease;
+        }
+
+        .cover-overlay {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6));
+        }
+
+        @media print {
+            .no-print { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            .plaak {
+                font-size: 1.5rem !important;
+            }
+            .text-6xl {
+                font-size: 2.5rem !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        function CoreActivitiesTool() {
+            const [currentView, setCurrentView] = useState('cover'); // 'cover', 'intro', 'activities', 'processes'
+            const [currentPage, setCurrentPage] = useState('activities'); // 'activities' or 'processes' (for tool navigation)
+            const [currentStep, setCurrentStep] = useState(1); // For activities page: 1, 2, 3, or 4
+            
+            // Page 1: Activities
+            const [valueProposition, setValueProposition] = useState('');
+            const [brainstormActivities, setBrainstormActivities] = useState(['', '', '', '', '']);
+            const [coreActivities, setCoreActivities] = useState(['', '', '', '', '']);
+            const [showBrainstormSelection, setShowBrainstormSelection] = useState(false);
+            const [showPage2Modal, setShowPage2Modal] = useState(false);
+            
+            // User identification
+            const [userEmail, setUserEmail] = useState('');
+            
+            // Page 2: Processes & KPIs
+            const [activityData, setActivityData] = useState([
+                {
+                    isExpanded: true,
+                    processes: [
+                        { process: '', kpi: { name: '', unit: '', target: '' } },
+                        { process: '', kpi: { name: '', unit: '', target: '' } },
+                        { process: '', kpi: { name: '', unit: '', target: '' } }
+                    ]
+                },
+                {
+                    isExpanded: false,
+                    processes: [
+                        { process: '', kpi: { name: '', unit: '', target: '' } },
+                        { process: '', kpi: { name: '', unit: '', target: '' } },
+                        { process: '', kpi: { name: '', unit: '', target: '' } }
+                    ]
+                },
+                {
+                    isExpanded: false,
+                    processes: [
+                        { process: '', kpi: { name: '', unit: '', target: '' } },
+                        { process: '', kpi: { name: '', unit: '', target: '' } },
+                        { process: '', kpi: { name: '', unit: '', target: '' } }
+                    ]
+                },
+                {
+                    isExpanded: false,
+                    processes: [
+                        { process: '', kpi: { name: '', unit: '', target: '' } },
+                        { process: '', kpi: { name: '', unit: '', target: '' } },
+                        { process: '', kpi: { name: '', unit: '', target: '' } }
+                    ]
+                },
+                {
+                    isExpanded: false,
+                    processes: [
+                        { process: '', kpi: { name: '', unit: '', target: '' } },
+                        { process: '', kpi: { name: '', unit: '', target: '' } },
+                        { process: '', kpi: { name: '', unit: '', target: '' } }
+                    ]
+                }
+            ]);
+
+            // Auto-save to localStorage
+            useEffect(() => {
+                const data = {
+                    valueProposition,
+                    brainstormActivities,
+                    coreActivities,
+                    showBrainstormSelection,
+                    activityData,
+                    currentStep,
+                    userEmail
+                };
+                localStorage.setItem('ft_core_activities_worksheet', JSON.stringify(data));
+            }, [valueProposition, brainstormActivities, coreActivities, showBrainstormSelection, activityData, currentStep, userEmail]);
+
+            // Load from localStorage
+            useEffect(() => {
+                const saved = localStorage.getItem('ft_core_activities_worksheet');
+                if (saved) {
+                    try {
+                        const data = JSON.parse(saved);
+                        setValueProposition(data.valueProposition || '');
+                        setBrainstormActivities(data.brainstormActivities || ['', '', '', '', '']);
+                        setCoreActivities(data.coreActivities || ['', '', '', '', '']);
+                        setShowBrainstormSelection(data.showBrainstormSelection || false);
+                        setUserEmail(data.userEmail || '');
+                        if (data.activityData) {
+                            setActivityData(data.activityData);
+                        }
+                        if (data.currentStep) {
+                            setCurrentStep(data.currentStep);
+                        }
+                    } catch (e) {}
+                }
+            }, []);
+
+            // Show modal when navigating to processes page
+            useEffect(() => {
+                if (currentPage === 'processes' && currentView === 'activities') {
+                    setShowPage2Modal(true);
+                }
+            }, [currentPage, currentView]);
+
+            const closeModal = () => {
+                setShowPage2Modal(false);
+            };
+
+            const sendToWebhook = async () => {
+                const payload = {
+                    toolName: 'core_activities',
+                    userId: userEmail,
+                    sprintNumber: 22,
+                    timestamp: new Date().toISOString(),
+                    data: {
+                        valueProposition,
+                        brainstormActivities: brainstormActivities.filter(a => a.trim()),
+                        coreActivities: coreActivities.filter(a => a.trim()),
+                        activityData: activityData.map((activity, idx) => ({
+                            activityName: coreActivities[idx],
+                            processes: activity.processes.filter(p => p.process.trim()).map(p => ({
+                                process: p.process,
+                                kpi: p.kpi
+                            }))
+                        })).filter(a => a.activityName)
+                    }
+                };
+
+                try {
+                    const response = await fetch('https://n8n-edge.fasttrack-diagnostic.com/webhook/608b17ea-9618-4877-ae3c-85eb2e89b700', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.ok) {
+                        alert('✅ Submission saved successfully!');
+                        return true;
+                    } else {
+                        throw new Error('Submission failed');
+                    }
+                } catch (error) {
+                    console.error('Webhook error:', error);
+                    alert('❌ Submission failed. Please try again.');
+                    return false;
+                }
+            };
+
+            const exportData = async () => {
+                // Send to webhook first
+                if (userEmail && userEmail.includes('@')) {
+                    await sendToWebhook();
+                }
+                
+                let summary = 'CORE ACTIVITIES & PROCESSES MAPPING TOOL\n';
+                summary += 'Fast Track Program - Module 06 → Sprint 01\n';
+                summary += '═══════════════════════════════════════════════════\n\n';
+                
+                if (userEmail) {
+                    summary += 'USER: ' + userEmail + '\n\n';
+                }
+                
+                summary += 'VALUE PROPOSITION\n';
+                summary += valueProposition + '\n\n';
+                
+                summary += 'BRAINSTORM COMPANY ACTIVITIES\n';
+                brainstormActivities.filter(a => a.trim()).forEach((a, i) => {
+                    summary += `  → ${a}\n`;
+                });
+                
+                summary += '\nTOP 5 COMPANY CORE ACTIVITIES\n';
+                coreActivities.filter(a => a.trim()).forEach((a, i) => {
+                    summary += `  ${i + 1}. ${a}\n`;
+                });
+                
+                summary += '\n═══════════════════════════════════════════════════\n\n';
+                
+                summary += 'CORE ACTIVITIES → PROCESSES → KPIs\n\n';
+                coreActivities.filter(a => a.trim()).forEach((activity, actIdx) => {
+                    summary += `[${actIdx + 1}] ${activity.toUpperCase()}\n`;
+                    if (activityData[actIdx]) {
+                        activityData[actIdx].processes.forEach((item, procIdx) => {
+                            if (item.process.trim()) {
+                                summary += `  → Process ${procIdx + 1}: ${item.process}\n`;
+                                if (item.kpi.name) {
+                                    summary += `     KPI: ${item.kpi.name} (${item.kpi.unit}): ${item.kpi.target}\n`;
+                                }
+                            }
+                        });
+                    }
+                    summary += '\n';
+                });
+
+                const blob = new Blob([summary], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'core-activities-mapping.txt';
+                a.click();
+            };
+
+            const Modal = () => {
+                const [isClosing, setIsClosing] = useState(false);
+                
+                const handleClose = () => {
+                    setIsClosing(true);
+                    setTimeout(() => {
+                        closeModal();
+                    }, 600);
+                };
+                
+                return (
+                    <div className="fixed inset-0 z-50 flex items-center justify-center">
+                        <div 
+                            className={`absolute inset-0 bg-black transition-opacity duration-500 ${
+                                isClosing ? 'opacity-0' : 'opacity-50'
+                            }`}
+                            onClick={handleClose}
+                        />
+                        
+                        <div 
+                            className={`relative bg-white max-w-2xl w-full mx-4 p-8 shadow-2xl transition-all duration-600 ease-out ${
+                                isClosing 
+                                    ? 'transform translate-x-[-600px] translate-y-[-50px] scale-75 opacity-0' 
+                                    : 'transform translate-x-0 translate-y-0 scale-100 opacity-100'
+                            }`}
+                            style={{
+                                borderRadius: '8px',
+                                transformOrigin: 'left center'
+                            }}
+                        >
+                            <button
+                                onClick={handleClose}
+                                className="absolute top-4 right-4 text-3xl text-gray-400 hover:text-black smooth"
+                            >
+                                ×
+                            </button>
+                            
+                            <div className="space-y-6 pr-8">
+                                <div>
+                                    <h3 className="plaak text-4xl mb-3">WHY</h3>
+                                    <p className="text-base leading-relaxed">
+                                        The organisational structure boils down to decision rights and processes. This tool drills down into the identified core activities to identify underlying core processes and respective KPIs that track performance.
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <h3 className="plaak text-4xl mb-3">WHAT</h3>
+                                    <p className="text-base leading-relaxed">
+                                        Identify your company's core processes and relevant KPIs.
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <h3 className="plaak text-4xl mb-3">HOW</h3>
+                                    <ul className="space-y-3 text-base">
+                                        <li>→ For each core activity, identify the 3 most critical processes.</li>
+                                        <li>→ Discuss with your team which are the processes that, if you master, will help you perform the core activities in the most efficient way possible.</li>
+                                        <li>→ For each process, define one clear KPI to measure its performance.</li>
+                                    </ul>
+                                </div>
+
+                                <button
+                                    onClick={handleClose}
+                                    className="w-full mt-6 px-8 py-3 bg-black text-white hover:bg-gray-800 smooth plaak text-lg"
+                                >
+                                    Got it – Let's start
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                );
+            };
+
+            // Render based on current view
+            if (currentView === 'cover') {
+                return <CoverPage onStart={() => setCurrentView('intro')} />;
+            }
+
+            if (currentView === 'intro') {
+                return <IntroScreen onBegin={() => setCurrentView('activities')} />;
+            }
+
+            return (
+                <div className="min-h-screen bg-white">
+                    {showPage2Modal && <Modal />}
+                    
+                    {/* Header */}
+                    <header className="border-b-2 border-black px-4 md:px-8 py-4 no-print">
+                        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+                            <div className="flex-1">
+                                <h1 className="plaak text-2xl md:text-3xl">CORE ACTIVITIES</h1>
+                                <div className="text-sm text-gray-600 mt-1">[MODULE 06 → SPRINT 01]</div>
+                            </div>
+                            <div className="flex items-center gap-3">
+                                <input
+                                    type="email"
+                                    value={userEmail}
+                                    onChange={(e) => setUserEmail(e.target.value)}
+                                    placeholder="Your email"
+                                    className="px-3 py-2 border border-gray-300 text-sm focus:border-black"
+                                    style={{ minWidth: '200px' }}
+                                />
+                            </div>
+                            <div className="flex gap-3 flex-wrap justify-center">
+                                <button
+                                    onClick={() => setCurrentPage('activities')}
+                                    className={`px-4 md:px-6 py-2 border-2 border-black smooth ${
+                                        currentPage === 'activities' ? 'bg-black text-white' : 'bg-white text-black hover:bg-gray-100'
+                                    }`}
+                                >
+                                    Core Activities
+                                </button>
+                                {(() => {
+                                    const isPage1Complete = valueProposition.trim() && 
+                                                           coreActivities.filter(a => a.trim()).length === 5;
+                                    
+                                    return (
+                                        <button
+                                            onClick={() => isPage1Complete && setCurrentPage('processes')}
+                                            disabled={!isPage1Complete}
+                                            className={`px-4 md:px-6 py-2 border-2 border-black smooth ${
+                                                currentPage === 'processes' 
+                                                    ? 'bg-black text-white' 
+                                                    : isPage1Complete
+                                                    ? 'bg-white text-black hover:bg-gray-100'
+                                                    : 'bg-gray-100 text-gray-400 cursor-not-allowed opacity-50'
+                                            }`}
+                                            title={!isPage1Complete ? 'Complete Page 1: Value Proposition + 5 Core Activities' : ''}
+                                        >
+                                            Processes & KPIs
+                                        </button>
+                                    );
+                                })()}
+                                {(() => {
+                                    const isComplete = valueProposition.trim() && 
+                                                      coreActivities.filter(a => a.trim()).length === 5;
+                                    const hasEmail = userEmail && userEmail.includes('@');
+                                    
+                                    return (
+                                        <button
+                                            onClick={sendToWebhook}
+                                            disabled={!isComplete || !hasEmail}
+                                            className={`px-4 md:px-6 py-2 border-2 smooth ${
+                                                isComplete && hasEmail
+                                                    ? 'border-black bg-black text-white hover:bg-gray-800'
+                                                    : 'border-gray-300 bg-gray-100 text-gray-400 cursor-not-allowed'
+                                            }`}
+                                            title={!hasEmail ? 'Enter your email to submit' : !isComplete ? 'Complete the tool to submit' : 'Submit to Fast Track'}
+                                        >
+                                            Submit
+                                        </button>
+                                    );
+                                })()}
+                                <button
+                                    onClick={exportData}
+                                    className="px-4 md:px-6 py-2 border-2 border-gray-300 hover:border-black smooth"
+                                >
+                                    Export
+                                </button>
+                            </div>
+                        </div>
+                    </header>
+
+                    {/* Main Content */}
+                    <main className="max-w-7xl mx-auto px-4 md:px-8 py-8">
+                        {currentPage === 'activities' && (
+                            <ActivitiesPage
+                                valueProposition={valueProposition}
+                                setValueProposition={setValueProposition}
+                                brainstormActivities={brainstormActivities}
+                                setBrainstormActivities={setBrainstormActivities}
+                                coreActivities={coreActivities}
+                                setCoreActivities={setCoreActivities}
+                                showBrainstormSelection={showBrainstormSelection}
+                                setShowBrainstormSelection={setShowBrainstormSelection}
+                                currentStep={currentStep}
+                                setCurrentStep={setCurrentStep}
+                                onNext={() => setCurrentPage('processes')}
+                            />
+                        )}
+                        
+                        {currentPage === 'processes' && (
+                            <ProcessesPage
+                                coreActivities={coreActivities}
+                                activityData={activityData}
+                                setActivityData={setActivityData}
+                            />
+                        )}
+                    </main>
+                </div>
+            );
+        }
+
+        // COVER PAGE
+        function CoverPage({ onStart }) {
+            return (
+                <div className="min-h-screen relative flex items-center justify-center"
+                     style={{
+                         backgroundImage: 'url("fabrizio-conti-_sK7own3aaw-unsplash.jpg")',
+                         backgroundSize: 'cover',
+                         backgroundPosition: 'center'
+                     }}>
+                    {/* Dark overlay */}
+                    <div className="absolute inset-0 cover-overlay"></div>
+                    
+                    {/* Fast Track Logo - Top Left */}
+                    <div className="absolute top-8 left-8 z-10">
+                        <img src="fast track tool logo.png" alt="Fast Track" className="h-12 md:h-16" />
+                    </div>
+                    
+                    {/* Content */}
+                    <div className="relative z-10 text-center text-white px-4 md:px-8 max-w-4xl">
+                        <h1 className="plaak text-4xl md:text-6xl mb-4 md:mb-6">CORE ACTIVITIES</h1>
+                        <p className="text-xl md:text-2xl mb-4 md:mb-8 font-light">Define Your Organizational Structure</p>
+                        <p className="text-base md:text-lg mb-8 md:mb-12 text-gray-200">Fast Track Program | Module 06 → Sprint 01</p>
+                        <button
+                            onClick={onStart}
+                            className="px-10 md:px-12 py-3 md:py-4 bg-white text-black plaak text-lg md:text-xl hover:bg-gray-100 smooth"
+                        >
+                            START
+                        </button>
+                    </div>
+                </div>
+            );
+        }
+
+        // INTRO SCREEN
+        function IntroScreen({ onBegin }) {
+            return (
+                <div className="min-h-screen bg-black text-white">
+                    <div className="max-w-6xl mx-auto px-4 md:px-8 py-12 md:py-16">
+                        {/* Fast Track Logo */}
+                        <div className="mb-12 md:mb-16">
+                            <img src="fast track tool logo.png" alt="Fast Track" className="h-10 md:h-12" />
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+                            {/* Left: Image */}
+                            <div className="order-2 md:order-1">
+                                <img 
+                                    src="goh-rhy-yan-eo7_DWzUxgw-unsplash.jpg" 
+                                    alt="Journey" 
+                                    className="w-full rounded-lg shadow-2xl"
+                                />
+                            </div>
+
+                            {/* Right: Quote and Button */}
+                            <div className="order-1 md:order-2 space-y-8 md:space-y-12">
+                                <div>
+                                    <div className="text-6xl md:text-8xl text-gray-600 mb-4">"</div>
+                                    <blockquote className="text-2xl md:text-3xl leading-relaxed font-light mb-4">
+                                        Clearly defining your core activities and processes isn't just an exercise—
+                                        <span className="text-white font-bold"> it's the key to strategic clarity and decisive action.</span>
+                                    </blockquote>
+                                    <div className="text-gray-400 text-sm md:text-base">Fast Track Methodology</div>
+                                </div>
+
+                                <div className="space-y-4 text-gray-300 text-base md:text-lg">
+                                    <p>→ Identify the activities that genuinely drive your business success</p>
+                                    <p>→ Remove ambiguity and speed up decisions</p>
+                                    <p>→ Create powerful alignment around clearly defined goals</p>
+                                </div>
+
+                                <button
+                                    onClick={onBegin}
+                                    className="w-full md:w-auto px-12 md:px-16 py-4 bg-white text-black plaak text-xl md:text-2xl hover:bg-gray-100 smooth"
+                                >
+                                    BEGIN
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        // PAGE 1: CORE ACTIVITIES - WITH PROGRESSIVE DISCLOSURE
+        function ActivitiesPage({ 
+            valueProposition, 
+            setValueProposition, 
+            brainstormActivities, 
+            setBrainstormActivities, 
+            coreActivities, 
+            setCoreActivities, 
+            showBrainstormSelection, 
+            setShowBrainstormSelection,
+            currentStep,
+            setCurrentStep,
+            onNext 
+        }) {
+            const addBrainstormRow = () => {
+                setBrainstormActivities([...brainstormActivities, '']);
+            };
+
+            const removeBrainstormRow = (index) => {
+                if (brainstormActivities.length > 1) {
+                    setBrainstormActivities(brainstormActivities.filter((_, i) => i !== index));
+                }
+            };
+
+            const updateBrainstorm = (index, value) => {
+                const updated = [...brainstormActivities];
+                updated[index] = value;
+                setBrainstormActivities(updated);
+            };
+
+            const updateCore = (index, value) => {
+                const updated = [...coreActivities];
+                updated[index] = value;
+                setCoreActivities(updated);
+            };
+
+            return (
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    {/* Left Sidebar - Context based on step */}
+                    <div className="lg:col-span-3 space-y-6">
+                        {currentStep === 1 && (
+                            <div className="context-box p-6">
+                                <h3 className="plaak text-3xl md:text-4xl mb-3">STEP 1</h3>
+                                <h4 className="font-bold mb-2">Value Proposition</h4>
+                                <p className="text-sm leading-relaxed">
+                                    Start by clearly stating your company's value proposition. This is the foundation 
+                                    that will guide your core activities identification.
+                                </p>
+                            </div>
+                        )}
+
+                        {currentStep === 2 && (
+                            <div className="context-box p-6">
+                                <h3 className="plaak text-3xl md:text-4xl mb-3">STEP 2</h3>
+                                <h4 className="font-bold mb-2">Brainstorm Activities</h4>
+                                <p className="text-sm leading-relaxed">
+                                    List ALL activities your company is performing. Don't filter yet—just brainstorm. 
+                                    Think broadly across all functions and departments.
+                                </p>
+                                <ul className="mt-3 space-y-1 text-sm">
+                                    <li>→ Be specific</li>
+                                    <li>→ Include at least 5-10 activities</li>
+                                    <li>→ Think about HOW you deliver value</li>
+                                </ul>
+                            </div>
+                        )}
+
+                        {currentStep === 3 && (
+                            <div className="context-box p-6">
+                                <h3 className="plaak text-3xl md:text-4xl mb-3">STEP 3</h3>
+                                <h4 className="font-bold mb-2">Select Top 5</h4>
+                                <p className="text-sm leading-relaxed">
+                                    Apply the 80/20 principle. Click to select the 5 activities with the <strong>biggest impact</strong> 
+                                    on your ability to deliver your value proposition.
+                                </p>
+                                <ul className="mt-3 space-y-1 text-sm">
+                                    <li>→ Focus on impact, not effort</li>
+                                    <li>→ What drives competitive advantage?</li>
+                                    <li>→ What must you excel at?</li>
+                                </ul>
+                            </div>
+                        )}
+
+                        {currentStep === 4 && (
+                            <div className="context-box p-6">
+                                <h3 className="plaak text-3xl md:text-4xl mb-3">STEP 4</h3>
+                                <h4 className="font-bold mb-2">Your Top 5 Core Activities</h4>
+                                <p className="text-sm leading-relaxed">
+                                    Review your selected core activities. These are your strategic focus areas 
+                                    that will receive 80% of your investment and resources.
+                                </p>
+                                <ul className="mt-3 space-y-1 text-sm">
+                                    <li>→ Review each selection carefully</li>
+                                    <li>→ Make changes if needed</li>
+                                    <li>→ Proceed when ready</li>
+                                </ul>
+                            </div>
+                        )}
+
+                        {/* WHY/WHAT/HOW Context - Always visible */}
+                        <div className="context-box p-6">
+                            <h3 className="plaak text-3xl md:text-4xl mb-3">WHY</h3>
+                            <p className="text-sm leading-relaxed">
+                                The only purpose of the organisational structure is to enable the delivery of the strategy. 
+                                This tool helps you answer: "What are the right seats in my company?"
+                            </p>
+                        </div>
+
+                        <div className="context-box p-6">
+                            <h3 className="plaak text-3xl md:text-4xl mb-3">WHAT</h3>
+                            <p className="text-sm leading-relaxed">
+                                Identify the right seats in your organization by identifying the core activities.
+                            </p>
+                        </div>
+
+                        <div className="context-box p-6">
+                            <h3 className="plaak text-3xl md:text-4xl mb-3">HOW</h3>
+                            <ul className="space-y-2 text-sm">
+                                <li>→ Write down your strategy/brand promise.</li>
+                                <li>→ Brainstorm and list all activities.</li>
+                                <li>→ Discuss what activities have the biggest impact.</li>
+                                <li>→ List the Top 5 activities.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    {/* Right Side - Worksheet with Progressive Disclosure */}
+                    <div className="lg:col-span-9 space-y-6">
+                        {/* ALWAYS SHOW: Section 01 - Value Proposition */}
+                        <div className="section-box">
+                            <div className="numbered-section">[01] Value proposition</div>
+                            <div className="p-6">
+                                <textarea
+                                    value={valueProposition}
+                                    onChange={(e) => setValueProposition(e.target.value)}
+                                    placeholder="Describe your company's value proposition which you made in the Value Proposition & Value Proposition Testing sprints. e.g., 'We help growing tech companies scale their customer support from 100 to 10,000 customers without hiring more agents, using AI-powered automation that maintains 95%+ satisfaction scores.'"
+                                    className="w-full worksheet-input min-h-[100px] resize-y"
+                                />
+                            </div>
+                        </div>
+
+                        {/* Show Continue button when value prop is filled */}
+                        {currentStep === 1 && valueProposition.trim() && (
+                            <div className="flex justify-end">
+                                <button
+                                    onClick={() => setCurrentStep(2)}
+                                    className="px-8 py-3 bg-black text-white hover:bg-gray-800 smooth plaak"
+                                >
+                                    Continue to Brainstorm →
+                                </button>
+                            </div>
+                        )}
+
+                        {/* SHOW AFTER STEP 1: Section 02 - Brainstorm Activities */}
+                        {currentStep >= 2 && (
+                            <div className="section-box">
+                                <div className="numbered-section">[02] Brainstorm company activities</div>
+                                <div className="p-6 space-y-3">
+                                    {!showBrainstormSelection ? (
+                                        <>
+                                            {brainstormActivities.map((activity, index) => {
+                                                const placeholders = [
+                                                    'e.g., Digital customer acquisition through content marketing',
+                                                    'e.g., Product development and innovation cycles',
+                                                    'e.g., Real-time customer support and service excellence',
+                                                    'e.g., Data-driven sales operations and lead management',
+                                                    'e.g., Strategic brand positioning and market research',
+                                                    'e.g., Agile software development and deployment',
+                                                    'e.g., Supply chain optimization and vendor management',
+                                                    'e.g., Quality assurance and continuous improvement',
+                                                    'e.g., Employee training and skill development programs',
+                                                    'e.g., Financial planning and budget optimization'
+                                                ];
+                                                return (
+                                                    <div key={index} className="flex gap-3 items-center">
+                                                        <div className="text-gray-400 w-6">→</div>
+                                                        <input
+                                                            type="text"
+                                                            value={activity}
+                                                            onChange={(e) => updateBrainstorm(index, e.target.value)}
+                                                            placeholder={placeholders[index % placeholders.length]}
+                                                            className="flex-1 worksheet-input"
+                                                        />
+                                                        {brainstormActivities.length > 1 && (
+                                                            <button
+                                                                onClick={() => removeBrainstormRow(index)}
+                                                                className="text-gray-400 hover:text-black text-xl"
+                                                            >
+                                                                ×
+                                                            </button>
+                                                        )}
+                                                    </div>
+                                                );
+                                            })}
+                                            <div className="flex gap-3 mt-4">
+                                                <button
+                                                    onClick={addBrainstormRow}
+                                                    className="text-sm text-gray-600 hover:text-black"
+                                                >
+                                                    + Add more activities
+                                                </button>
+                                                {brainstormActivities.filter(a => a.trim()).length >= 5 && (
+                                                    <button
+                                                        onClick={() => {
+                                                            setShowBrainstormSelection(true);
+                                                            setCurrentStep(3);
+                                                        }}
+                                                        className="ml-auto px-6 py-2 bg-black text-white hover:bg-gray-800 smooth"
+                                                    >
+                                                        Done - Select Top 5 →
+                                                    </button>
+                                                )}
+                                            </div>
+                                    </>
+                                ) : (
+                                    <>
+                                        <div className="mb-4 p-4 bg-gray-100 rounded">
+                                            <div className="text-sm font-semibold mb-1">Apply 80/20 Principle</div>
+                                            <div className="text-sm text-gray-700">
+                                                Click on activities below to select your Top 5 core activities. 
+                                                Choose the activities with the <strong>biggest impact</strong> on your ability to deliver your value proposition.
+                                            </div>
+                                        </div>
+                                        {brainstormActivities.filter(a => a.trim()).map((activity, index) => {
+                                            const isSelected = coreActivities.includes(activity);
+                                            const selectedCount = coreActivities.filter(a => a.trim()).length;
+                                            return (
+                                                <button
+                                                    key={index}
+                                                    onClick={() => {
+                                                        if (!isSelected && selectedCount < 5) {
+                                                            const emptyIndex = coreActivities.findIndex(a => !a.trim());
+                                                            if (emptyIndex !== -1) {
+                                                                const updated = [...coreActivities];
+                                                                updated[emptyIndex] = activity;
+                                                                setCoreActivities(updated);
+                                                            }
+                                                        } else if (isSelected) {
+                                                            const updated = coreActivities.map(a => a === activity ? '' : a);
+                                                            setCoreActivities(updated);
+                                                        }
+                                                    }}
+                                                    disabled={!isSelected && selectedCount >= 5}
+                                                    className={`w-full text-left px-4 py-3 border-2 smooth flex items-center justify-between ${
+                                                        isSelected
+                                                            ? 'border-black bg-black text-white'
+                                                            : selectedCount >= 5
+                                                            ? 'border-gray-200 bg-gray-50 text-gray-400 cursor-not-allowed'
+                                                            : 'border-gray-300 hover:border-black'
+                                                    }`}
+                                                >
+                                                    <span>→ {activity}</span>
+                                                    {isSelected && <span className="text-sm font-bold">✓ Selected</span>}
+                                                </button>
+                                            );
+                                        })}
+                                        <div className="flex gap-3 mt-4 items-center flex-wrap">
+                                            <button
+                                                onClick={() => {
+                                                    setShowBrainstormSelection(false);
+                                                    setCurrentStep(2);
+                                                }}
+                                                className="text-sm text-gray-600 hover:text-black"
+                                            >
+                                                ← Back to edit brainstorm
+                                            </button>
+                                            <div className="ml-auto text-sm text-gray-600">
+                                                {coreActivities.filter(a => a.trim()).length} / 5 selected
+                                            </div>
+                                            {coreActivities.filter(a => a.trim()).length === 5 && (
+                                                <button
+                                                    onClick={() => setCurrentStep(4)}
+                                                    className="px-8 py-2 bg-black text-white hover:bg-gray-800 smooth font-semibold"
+                                                >
+                                                    Confirm Selection →
+                                                </button>
+                                            )}
+                                        </div>
+                                    </>
+                                )}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* SHOW AFTER STEP 2 (when in selection mode): Section 03 - Top 5 */}
+                        {currentStep >= 4 && (
+                            <div className="section-box">
+                                <div className="numbered-section">[03] Top 5 company core activities</div>
+                                <div className="p-6 space-y-3">
+                                    <div className="mb-4 p-4 bg-green-50 border-l-4 border-green-600">
+                                        <div className="text-sm font-semibold mb-1 text-green-900">✓ Selection Complete</div>
+                                        <div className="text-sm text-green-800">
+                                            Review your Top 5 core activities below. These represent your strategic focus areas.
+                                        </div>
+                                    </div>
+                                    {coreActivities.map((activity, index) => {
+                                        return (
+                                            <div key={index} className="flex gap-3 items-start">
+                                                <div className="text-gray-900 font-bold w-8 pt-3">{index + 1}.</div>
+                                                <div className="flex-1 px-4 py-3 bg-black text-white border-2 border-black rounded font-medium">
+                                                    {activity}
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+
+                                    <div className="flex gap-3 mt-6 flex-wrap">
+                                        <button
+                                            onClick={() => {
+                                                setCurrentStep(3);
+                                            }}
+                                            className="px-6 py-2 border-2 border-gray-300 hover:border-black smooth"
+                                        >
+                                            ← Change Selection
+                                        </button>
+                                        <button
+                                            onClick={onNext}
+                                            className="ml-auto px-8 py-3 bg-black text-white hover:bg-gray-800 smooth plaak text-lg"
+                                        >
+                                            Next: Processes & KPIs →
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            );
+        }
+
+        // PAGE 2: CORE PROCESSES AND KPIS
+        function ProcessesPage({ coreActivities, activityData, setActivityData }) {
+
+            const toggleAccordion = (activityIndex) => {
+                const updated = [...activityData];
+                updated[activityIndex].isExpanded = !updated[activityIndex].isExpanded;
+                setActivityData(updated);
+            };
+
+            const updateProcess = (activityIndex, processIndex, value) => {
+                const updated = [...activityData];
+                updated[activityIndex].processes[processIndex].process = value;
+                setActivityData(updated);
+            };
+
+            const updateKPI = (activityIndex, processIndex, field, value) => {
+                const updated = [...activityData];
+                updated[activityIndex].processes[processIndex].kpi[field] = value;
+                setActivityData(updated);
+            };
+
+            return (
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    {/* Left Sidebar - Context */}
+                    <div className="lg:col-span-3 space-y-6">
+                        <div className="context-box p-6">
+                            <h3 className="plaak text-3xl md:text-4xl mb-3">WHY</h3>
+                            <p className="text-sm leading-relaxed">
+                                The organisational structure boils down to decision rights and processes. This tool drills down into the identified core activities to identify underlying core processes and respective KPIs that track performance.
+                            </p>
+                        </div>
+
+                        <div className="context-box p-6">
+                            <h3 className="plaak text-3xl md:text-4xl mb-3">WHAT</h3>
+                            <p className="text-sm leading-relaxed">
+                                Identify your company's core processes and relevant KPIs.
+                            </p>
+                        </div>
+
+                        <div className="context-box p-6">
+                            <h3 className="plaak text-3xl md:text-4xl mb-3">HOW</h3>
+                            <ul className="space-y-2 text-sm">
+                                <li>→ For each core activity, identify the 3 most critical processes.</li>
+                                <li>→ Discuss with your team which are the processes that, if you master, will help you perform the core activities in the most efficient way possible.</li>
+                                <li>→ For each process, define one clear KPI to measure its performance.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    {/* Right Side - Worksheet */}
+                    <div className="lg:col-span-9 space-y-6">
+                        {coreActivities.filter(a => a.trim()).length > 0 ? (
+                            coreActivities.filter(a => a.trim()).map((activity, activityIndex) => (
+                                <div key={activityIndex} className="section-box overflow-hidden">
+                                    {/* Accordion Header */}
+                                    <button
+                                        onClick={() => toggleAccordion(activityIndex)}
+                                        className="w-full flex items-center justify-between p-6 hover:bg-gray-50 smooth text-left"
+                                    >
+                                        <div className="flex items-center gap-4">
+                                            <div className="plaak text-xl">[{activityIndex + 1}]</div>
+                                            <div className="font-semibold text-base md:text-lg">{activity}</div>
+                                        </div>
+                                        <div className="text-2xl text-gray-400">
+                                            {activityData[activityIndex]?.isExpanded ? '−' : '+'}
+                                        </div>
+                                    </button>
+
+                                    {/* Accordion Content */}
+                                    {activityData[activityIndex]?.isExpanded && (
+                                        <div className="border-t border-gray-200 p-6 space-y-6 bg-gray-50">
+                                            {activityData[activityIndex].processes.map((item, processIndex) => {
+                                                const processPlaceholders = [
+                                                    'e.g., Real-time sales tracking and reporting',
+                                                    'e.g., Weekly customer feedback collection and analysis',
+                                                    'e.g., Automated inventory management system'
+                                                ];
+                                                const kpiExamples = [
+                                                    { name: 'Sell-through rate', unit: '%', target: '85' },
+                                                    { name: 'Customer satisfaction score', unit: 'score', target: '8.5' },
+                                                    { name: 'Response time', unit: 'hours', target: '2' }
+                                                ];
+                                                return (
+                                                    <div key={processIndex} className="bg-white p-5 rounded border border-gray-300 space-y-4">
+                                                        {/* Process Input */}
+                                                        <div>
+                                                            <div className="text-sm font-semibold text-gray-600 mb-2">
+                                                                Process {processIndex + 1}
+                                                            </div>
+                                                            <input
+                                                                type="text"
+                                                                value={item.process}
+                                                                onChange={(e) => updateProcess(activityIndex, processIndex, e.target.value)}
+                                                                placeholder={processPlaceholders[processIndex]}
+                                                                className="w-full worksheet-input"
+                                                            />
+                                                        </div>
+
+                                                        {/* KPI Input */}
+                                                        <div>
+                                                            <div className="text-sm font-semibold text-gray-600 mb-2">
+                                                                KPI
+                                                            </div>
+                                                            <div className="grid grid-cols-12 gap-3">
+                                                                <input
+                                                                    type="text"
+                                                                    value={item.kpi.name}
+                                                                    onChange={(e) => updateKPI(activityIndex, processIndex, 'name', e.target.value)}
+                                                                    placeholder={`e.g., ${kpiExamples[processIndex].name}`}
+                                                                    className="col-span-12 md:col-span-6 worksheet-input"
+                                                                />
+                                                                <input
+                                                                    type="text"
+                                                                    value={item.kpi.unit}
+                                                                    onChange={(e) => updateKPI(activityIndex, processIndex, 'unit', e.target.value)}
+                                                                    placeholder={kpiExamples[processIndex].unit}
+                                                                    className="col-span-6 md:col-span-3 worksheet-input"
+                                                                />
+                                                                <input
+                                                                    type="text"
+                                                                    value={item.kpi.target}
+                                                                    onChange={(e) => updateKPI(activityIndex, processIndex, 'target', e.target.value)}
+                                                                    placeholder={kpiExamples[processIndex].target}
+                                                                    className="col-span-6 md:col-span-3 worksheet-input"
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                    )}
+                                </div>
+                            ))
+                        ) : (
+                            <div className="section-box p-6 text-center">
+                                <div className="text-gray-400 italic">Complete "Core Activities" page first</div>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<CoreActivitiesTool />, document.getElementById('root'));
+    </script>
+</body>
+</html>

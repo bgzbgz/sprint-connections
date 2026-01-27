@@ -1,0 +1,65 @@
+/**
+ * Fast Track Brand - Grid Layout System
+ * Per contracts/layout.yaml
+ *
+ * 12-column grid with CSS Grid
+ * Responsive: 12 → 8 → 4 columns
+ */
+
+.ft-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--ft-space-3);
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 var(--ft-space-4);
+}
+
+/* Column spans */
+.ft-col-1 { grid-column: span 1; }
+.ft-col-2 { grid-column: span 2; }
+.ft-col-3 { grid-column: span 3; }
+.ft-col-4 { grid-column: span 4; }
+.ft-col-5 { grid-column: span 5; }
+.ft-col-6 { grid-column: span 6; }
+.ft-col-7 { grid-column: span 7; }
+.ft-col-8 { grid-column: span 8; }
+.ft-col-9 { grid-column: span 9; }
+.ft-col-10 { grid-column: span 10; }
+.ft-col-11 { grid-column: span 11; }
+.ft-col-12 { grid-column: span 12; }
+
+/* Full width */
+.ft-col-full { grid-column: 1 / -1; }
+
+/* Tablet breakpoint (768px) - 8 columns */
+@media (max-width: 768px) {
+  .ft-grid {
+    grid-template-columns: repeat(8, 1fr);
+    gap: var(--ft-space-3);
+    padding: 0 var(--ft-space-3);
+  }
+
+  .ft-col-6,
+  .ft-col-5,
+  .ft-col-4 {
+    grid-column: span 4;
+  }
+}
+
+/* Mobile breakpoint (375px) - 4 columns */
+@media (max-width: 375px) {
+  .ft-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--ft-space-2);
+    padding: 0 var(--ft-space-2);
+  }
+
+  .ft-col-6,
+  .ft-col-5,
+  .ft-col-4,
+  .ft-col-3,
+  .ft-col-2 {
+    grid-column: span 4;
+  }
+}

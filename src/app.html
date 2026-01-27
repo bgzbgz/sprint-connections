@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boss Office</title>
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+  <link rel="preload" href="assets/fonts/Plaak3Trial-43-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/RiformaLL-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <!-- ========== HEADER WITH NAVIGATION ========== -->
+  <header class="ft-header">
+    <nav class="ft-header__nav" role="tablist" aria-label="Main navigation">
+      <a href="#upload"
+         role="tab"
+         id="tab-upload"
+         aria-controls="view-upload"
+         aria-selected="false"
+         class="ft-header__nav-item"
+         tabindex="0">UPLOAD</a>
+      <a href="#inbox"
+         role="tab"
+         id="tab-inbox"
+         aria-controls="view-inbox"
+         aria-selected="true"
+         class="ft-header__nav-item ft-header__nav-item--active"
+         tabindex="0">INBOX <span class="ft-header__badge" id="inbox-badge" hidden>0</span></a>
+      <a href="#preview"
+         role="tab"
+         id="tab-preview"
+         aria-controls="view-preview"
+         aria-selected="false"
+         class="ft-header__nav-item"
+         tabindex="0">PREVIEW</a>
+    </nav>
+    <div class="ft-header__logo">
+      <img src="assets/images/FastTrack_F_White.png" alt="Fast Track" width="32" height="32">
+    </div>
+  </header>
+
+  <!-- ========== MAIN CONTENT AREA ========== -->
+  <main class="app-main">
+    <!-- ========== GLOBAL ERROR DISPLAY ========== -->
+    <div class="app-error" id="global-error" hidden>
+      <span class="app-error__message" id="error-text"></span>
+      <button type="button" class="app-error__dismiss" id="error-dismiss" aria-label="Dismiss error">&times;</button>
+    </div>
+
+    <!-- ========== UPLOAD VIEW (Pre-Submission Questionnaire) ========== -->
+    <section id="view-upload"
+             class="view"
+             role="tabpanel"
+             aria-labelledby="tab-upload"
+             hidden>
+      <div class="view__content">
+        <!-- Questionnaire Container -->
+        <div class="ft-questionnaire" id="questionnaire-container">
+          <!-- Progress Indicator -->
+          <div class="ft-questionnaire__progress" id="progress-indicator">
+            <div class="ft-questionnaire__progress-step" data-step="1"></div>
+            <div class="ft-questionnaire__progress-step" data-step="2"></div>
+            <div class="ft-questionnaire__progress-step" data-step="3"></div>
+            <div class="ft-questionnaire__progress-step" data-step="4"></div>
+          </div>
+          <div class="ft-questionnaire__progress-text">
+            <span class="ft-meta" id="progress-text">STEP 1 OF 4</span>
+          </div>
+
+          <!-- Success Message (hidden by default) -->
+          <div class="ft-questionnaire__success ft-questionnaire__success--hidden" id="success-message">
+            <div class="ft-questionnaire__success-icon">✓</div>
+            <div class="ft-questionnaire__success-text">Tool request submitted!</div>
+          </div>
+
+          <!-- Question Step Container -->
+          <div class="ft-questionnaire__step" id="step-container">
+            <!-- Question Text -->
+            <h2 class="ft-questionnaire__question" id="question-text">
+              What decision should the user make by the end of this tool?
+            </h2>
+
+            <!-- Text Input (for Q1, Q2, Q4) -->
+            <div class="ft-questionnaire__input-wrapper" id="text-input-wrapper">
+              <textarea
+                class="ft-questionnaire__textarea ft-textarea"
+                id="answer-input"
+                placeholder="Enter your answer..."
+                maxlength="500"
+              ></textarea>
+              <div class="ft-questionnaire__char-count" id="char-count">0/500</div>
+            </div>
+
+            <!-- Checkbox Group (for Q3 - hidden by default) -->
+            <div class="ft-questionnaire__checkbox-group" id="checkbox-group" hidden>
+              <label class="ft-questionnaire__checkbox-item">
+                <input type="checkbox" class="ft-questionnaire__checkbox-input" value="numbers">
+                <span class="ft-questionnaire__checkbox-label">Numbers/Metrics</span>
+              </label>
+              <label class="ft-questionnaire__checkbox-item">
+                <input type="checkbox" class="ft-questionnaire__checkbox-input" value="yesno">
+                <span class="ft-questionnaire__checkbox-label">Yes/No Questions</span>
+              </label>
+              <label class="ft-questionnaire__checkbox-item">
+                <input type="checkbox" class="ft-questionnaire__checkbox-input" value="rating">
+                <span class="ft-questionnaire__checkbox-label">Rating Scales</span>
+              </label>
+              <label class="ft-questionnaire__checkbox-item">
+                <input type="checkbox" class="ft-questionnaire__checkbox-input" value="multiple">
+                <span class="ft-questionnaire__checkbox-label">Multiple Choice</span>
+              </label>
+              <label class="ft-questionnaire__checkbox-item">
+                <input type="checkbox" class="ft-questionnaire__checkbox-input" value="text">
+                <span class="ft-questionnaire__checkbox-label">Text Responses</span>
+              </label>
+            </div>
+
+            <!-- Validation Error (hidden by default) -->
+            <div class="ft-questionnaire__error ft-questionnaire__error--hidden" id="validation-error">
+              This field is required
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="ft-questionnaire__nav" id="nav-buttons">
+              <button
+                type="button"
+                class="ft-button ft-button--secondary"
+                id="prev-btn"
+                hidden
+              >
+                Previous
+              </button>
+              <button
+                type="button"
+                class="ft-button ft-button--primary"
+                id="next-btn"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+
+          <!-- Review Container (hidden by default) -->
+          <div class="ft-questionnaire__review" id="review-container" hidden>
+            <h2 class="ft-questionnaire__review-title">Review Your Answers</h2>
+
+            <!-- Answer 1: Decision -->
+            <div class="ft-questionnaire__review-item">
+              <div class="ft-questionnaire__review-label">
+                <span>1. WHAT DECISION SHOULD THE USER MAKE?</span>
+                <button type="button" class="ft-questionnaire__edit-btn" data-edit-step="1">Edit</button>
+              </div>
+              <div class="ft-questionnaire__review-answer" id="review-decision">
+                <!-- Answer populated by JS -->
+              </div>
+            </div>
+
+            <!-- Answer 2: Teaching -->
+            <div class="ft-questionnaire__review-item">
+              <div class="ft-questionnaire__review-label">
+                <span>2. WHAT WILL THIS TOOL TEACH THEM?</span>
+                <button type="button" class="ft-questionnaire__edit-btn" data-edit-step="2">Edit</button>
+              </div>
+              <div class="ft-questionnaire__review-answer" id="review-teaching">
+                <!-- Answer populated by JS -->
+              </div>
+            </div>
+
+            <!-- Answer 3: Input Types -->
+            <div class="ft-questionnaire__review-item">
+              <div class="ft-questionnaire__review-label">
+                <span>3. WHAT INPUTS SHOULD THE USER PROVIDE?</span>
+                <button type="button" class="ft-questionnaire__edit-btn" data-edit-step="3">Edit</button>
+              </div>
+              <div class="ft-questionnaire__review-tags" id="review-input-types">
+                <!-- Tags populated by JS -->
+              </div>
+            </div>
+
+            <!-- Answer 4: Scoring Criteria -->
+            <div class="ft-questionnaire__review-item">
+              <div class="ft-questionnaire__review-label">
+                <span>4. WHAT MAKES SOMEONE SCORE HIGH VS LOW?</span>
+                <button type="button" class="ft-questionnaire__edit-btn" data-edit-step="4">Edit</button>
+              </div>
+              <div class="ft-questionnaire__review-answer" id="review-scoring">
+                <!-- Answer populated by JS -->
+              </div>
+            </div>
+
+            <!-- Optional File Upload -->
+            <div class="ft-questionnaire__review-item ft-questionnaire__dropzone-section">
+              <div class="ft-questionnaire__review-label">
+                <span>ATTACH DOCUMENT (OPTIONAL)</span>
+              </div>
+              <div class="ft-questionnaire__dropzone" id="review-dropzone">
+                <input type="file" id="file-input" class="ft-questionnaire__file-input" accept=".pdf,.docx,.txt,.md,.PDF,.DOCX,.TXT,.MD">
+                <div class="ft-questionnaire__dropzone-content" id="dropzone-content">
+                  <p class="ft-questionnaire__dropzone-text">Drop file here or click to browse</p>
+                  <span class="ft-meta">PDF, DOCX, TXT, MD (max 10MB)</span>
+                </div>
+                <div class="ft-questionnaire__dropzone-file" id="dropzone-file" hidden>
+                  <div class="ft-questionnaire__file-info">
+                    <span class="ft-badge" id="file-type-badge">PDF</span>
+                    <span class="ft-questionnaire__file-name" id="file-name">document.pdf</span>
+                    <span class="ft-meta" id="file-size">1.2 MB</span>
+                  </div>
+                  <button type="button" class="ft-questionnaire__remove-file" id="remove-file-btn">&times;</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Error Message (hidden by default) -->
+            <div class="ft-questionnaire__error ft-questionnaire__error--hidden" id="submit-error">
+              Unable to submit. Please try again.
+            </div>
+
+            <!-- Submit Button -->
+            <button
+              type="button"
+              class="ft-button ft-button--primary ft-questionnaire__submit"
+              id="submit-btn"
+            >
+              Submit Tool Request
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== INBOX VIEW ========== -->
+    <section id="view-inbox"
+             class="view"
+             role="tabpanel"
+             aria-labelledby="tab-inbox">
+      <div class="view__content">
+        <div class="inbox-list" id="inbox-container">
+          <header class="inbox-list__header">
+            <h1 class="inbox-list__title">APPROVED TOOLS</h1>
+            <span class="inbox-list__count" id="inbox-count">0 tools</span>
+          </header>
+
+          <!-- Loading State -->
+          <div class="inbox-loading" id="inbox-loading" hidden>
+            <span class="ft-upload-dropzone__spinner"></span>
+            <span class="inbox-loading__text">Loading approved tools...</span>
+          </div>
+
+          <!-- Empty State -->
+          <div class="inbox-empty" id="inbox-empty" hidden>
+            <h2 class="inbox-empty__title">NO APPROVED TOOLS YET</h2>
+            <p class="inbox-empty__description">Upload a document to create a new tool.</p>
+          </div>
+
+          <!-- Inbox Items Container -->
+          <div class="inbox-list__items" id="inbox-items">
+            <!-- Items rendered by JavaScript -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PREVIEW VIEW ========== -->
+    <section id="view-preview"
+             class="view"
+             role="tabpanel"
+             aria-labelledby="tab-preview"
+             hidden>
+      <div class="view__content">
+        <!-- Preview Empty State -->
+        <div class="preview-empty" id="preview-empty">
+          <div class="preview-empty__content">
+            <h2 class="preview-empty__title">SELECT A TOOL</h2>
+            <p class="preview-empty__description">Choose a tool from the Inbox to preview.</p>
+            <a href="#inbox" class="ft-button ft-button--tertiary">Go to Inbox</a>
+          </div>
+        </div>
+
+        <!-- Preview Content (hidden until job selected) -->
+        <div class="preview-page" id="preview-content" hidden>
+          <!-- Preview Header/Meta -->
+          <div class="preview-meta" id="preview-meta">
+            <div class="preview-meta__primary">
+              <h1 class="preview-meta__title" id="preview-title">Tool Name</h1>
+              <span class="preview-meta__job-id" id="preview-job-id">JOB-ID</span>
+            </div>
+            <div class="preview-meta__secondary">
+              <span class="preview-meta__timestamp" id="preview-timestamp"></span>
+            </div>
+          </div>
+
+          <!-- Preview Actions -->
+          <div class="preview-actions">
+            <button type="button" class="preview-actions__back" id="back-to-inbox">
+              &larr; Back to Inbox
+            </button>
+            <button type="button" class="preview-actions__new-tab" id="open-new-tab">
+              Open in New Tab
+            </button>
+          </div>
+
+          <!-- Preview Content Area -->
+          <div class="preview-content">
+            <!-- Tool Preview (Iframe) -->
+            <div class="preview-frame" id="preview-frame">
+              <div class="preview-frame__container">
+                <iframe
+                  id="tool-iframe"
+                  class="preview-frame__iframe"
+                  sandbox="allow-scripts allow-forms allow-same-origin"
+                  title="Tool Preview"
+                ></iframe>
+              </div>
+              <div class="preview-frame__loading" id="preview-loading">
+                <span class="ft-upload-dropzone__spinner"></span>
+                <span class="preview-frame__loading-text">Loading tool...</span>
+              </div>
+            </div>
+
+            <!-- QA Panel -->
+            <aside class="qa-panel" id="qa-panel" role="complementary" aria-label="QA Report Panel">
+              <header class="qa-panel__header">
+                <h2 class="qa-panel__title">QA REPORT</h2>
+                <span class="qa-panel__status" id="qa-status">PASS</span>
+              </header>
+
+              <div class="qa-panel__content">
+                <!-- Score Section -->
+                <div class="qa-panel__section">
+                  <span class="qa-panel__label">SCORE</span>
+                  <span class="qa-panel__value" id="qa-score">--/100</span>
+                </div>
+
+                <!-- Summary Section -->
+                <div class="qa-panel__section">
+                  <span class="qa-panel__label">SUMMARY</span>
+                  <p class="qa-panel__notes" id="qa-summary">Loading...</p>
+                </div>
+
+                <!-- Checks Section -->
+                <div class="qa-panel__section" id="qa-checks-section">
+                  <span class="qa-panel__label">CHECKS</span>
+                  <ul class="qa-panel__list" id="qa-checks">
+                    <!-- Checks rendered by JavaScript -->
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Boss Actions -->
+              <div class="qa-panel__actions">
+                <div class="preview-actions--boss">
+                  <button type="button" class="preview-actions__approve" id="btn-approve">
+                    Approve
+                  </button>
+                  <button type="button" class="preview-actions__revision" id="btn-revision">
+                    Request Revision
+                  </button>
+                  <button type="button" class="preview-actions__reject" id="btn-reject">
+                    Reject
+                  </button>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== MODAL CONTAINER ========== -->
+  <div class="note-modal" id="modal" hidden>
+    <div class="note-modal__backdrop" id="modal-backdrop"></div>
+    <div class="note-modal__content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <header class="note-modal__header">
+        <h2 class="note-modal__title" id="modal-title">Title</h2>
+        <button type="button" class="note-modal__close" id="modal-close" aria-label="Close">&times;</button>
+      </header>
+      <div class="note-modal__body">
+        <label class="note-modal__label" for="modal-input" id="modal-label">Note</label>
+        <textarea
+          class="note-modal__input"
+          id="modal-input"
+          placeholder="Enter your note..."
+          rows="4"
+        ></textarea>
+        <span class="note-modal__hint" id="modal-hint"></span>
+      </div>
+      <footer class="note-modal__footer">
+        <button type="button" class="note-modal__cancel" id="modal-cancel">Cancel</button>
+        <button type="button" class="note-modal__submit" id="modal-submit">Submit</button>
+      </footer>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

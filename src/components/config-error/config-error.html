@@ -1,0 +1,56 @@
+<!--
+  Configuration Error Display Component
+  Spec: 012-config-secrets
+  Per contracts/startup.yaml blocking behavior
+
+  Full-screen blocking overlay shown when system is in CONFIG_ERROR state
+  Not dismissable - Boss must fix configuration before proceeding
+-->
+
+<template id="config-error-template">
+  <div class="config-error-overlay" role="alert" aria-live="assertive">
+    <div class="config-error-container">
+      <!-- Icon -->
+      <div class="config-error-icon">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+      </div>
+
+      <!-- Title -->
+      <h1 class="config-error-title">Boss Office is not configured</h1>
+
+      <!-- Message -->
+      <p class="config-error-message">Fix configuration before proceeding.</p>
+
+      <!-- Missing Fields List -->
+      <div class="config-error-fields" id="config-error-fields">
+        <p class="config-error-fields-label">Missing configuration:</p>
+        <ul class="config-error-fields-list" id="config-error-fields-list">
+          <!-- Populated by JavaScript -->
+        </ul>
+      </div>
+
+      <!-- Instructions -->
+      <div class="config-error-instructions">
+        <p>To fix this issue:</p>
+        <ol>
+          <li>Check your <code>.env</code> file contains all required values</li>
+          <li>Verify environment variables are set correctly</li>
+          <li>Restart the application</li>
+        </ol>
+      </div>
+
+      <!-- Documentation Link -->
+      <div class="config-error-docs">
+        <p>See <a href="/docs/configuration" class="config-error-link">configuration guide</a> for details.</p>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style>
+  /* Styles are in _config-error.css */
+</style>

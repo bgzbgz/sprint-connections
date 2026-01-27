@@ -1,0 +1,43 @@
+/**
+ * Fast Track Brand System - Main Entry Point
+ * Import order matters: tokens → base → components → utilities
+ *
+ * BRAND CONSTRAINTS ENFORCED:
+ * - 4 colors only: #000000, #FFFFFF, #B2B2B2, #FFF469
+ * - 3 typefaces: Plaak (headlines), Riforma (body), Monument (labels)
+ * - border-radius: 0 ALWAYS
+ * - box-shadow: none ALWAYS
+ * - No gradients, no fancy transitions
+ */
+
+/* ========== 1. DESIGN TOKENS ========== */
+@import 'tokens/_colors.css';
+@import 'tokens/_typography.css';
+@import 'tokens/_spacing.css';
+@import 'tokens/_borders.css';
+
+/* ========== 2. BASE STYLES ========== */
+@import 'base/_fonts.css';
+@import 'base/_reset.css';
+@import 'base/_base.css';
+@import 'base/_typography.css';
+
+/* ========== 3. COMPONENTS ========== */
+@import 'components/_header.css';
+@import 'components/_cards.css';
+@import 'components/_buttons.css';
+@import 'components/_feedback.css';
+@import 'components/_forms.css';
+@import 'components/_upload.css';
+@import 'components/_job-status.css';
+@import 'components/_inbox.css';
+@import 'components/_preview.css';
+@import 'components/_questionnaire.css';
+
+/* ========== 4. UTILITIES ========== */
+@import 'utilities/_backgrounds.css';
+@import 'utilities/_text.css';
+@import 'utilities/_grid.css';
+@import 'utilities/_spacing.css';
+@import 'utilities/_alignment.css';
+@import 'utilities/_responsive.css';

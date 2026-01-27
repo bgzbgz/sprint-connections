@@ -1,0 +1,31 @@
+<!--
+  Fast Track Inbox - List Container Template
+  Spec: 009-inbox-approved-tools
+  Per contracts/inbox-list.yaml
+
+  Display States:
+  - loading: Show "Loading approved tools..."
+  - error: Show error message in Fast Track DNA style
+  - empty: Show "No approved tools yet." (inbox-empty component)
+  - list: Show list of InboxItemCard components
+
+  Brand Contract (spec-005):
+  - background: #FFFFFF
+  - text_primary: #000000
+  - text_secondary: #B2B2B2
+  - accent: #FFF469
+  - alignment: left
+  - borders: solid 3px #000000
+  - border_radius: 0
+  - spacing: 8px base unit
+-->
+
+<div class="inbox-list">
+  <header class="inbox-list__header">
+    <h1 class="inbox-list__title">APPROVED TOOLS</h1>
+    <span class="inbox-list__count">{{count}} {{count_label}}</span>
+  </header>
+  <div class="inbox-list__items">
+    <!-- InboxItemCard components rendered here -->
+  </div>
+</div>

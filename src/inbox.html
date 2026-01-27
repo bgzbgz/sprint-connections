@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inbox - Fast Track Boss Office</title>
+
+  <!-- Font Preload Links (critical for performance) -->
+  <link rel="preload" href="assets/fonts/Plaak3Trial-43-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/RiformaLL-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/MonumentGrotesk-Mono.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <!-- Header with F Mark -->
+  <header class="ft-header">
+    <nav class="ft-header__nav">
+      <a href="inbox.html" class="ft-header__nav-item ft-header__nav-item--active">Inbox</a>
+      <a href="index.html" class="ft-header__nav-item">Upload</a>
+      <a href="#" class="ft-header__nav-item">Settings</a>
+    </nav>
+    <div class="ft-header__logo">
+      <img src="assets/images/FastTrack_F_White.png" alt="Fast Track">
+    </div>
+  </header>
+
+  <!-- Main Content - Inbox Container -->
+  <main class="ft-container">
+    <!-- Inbox will be rendered here by inbox.ts -->
+    <div id="inbox-container">
+      <!-- Loading state shown initially -->
+      <div class="inbox-loading">
+        <span class="inbox-loading__text">LOADING APPROVED TOOLS...</span>
+      </div>
+    </div>
+  </main>
+
+  <!-- Inbox Script -->
+  <script type="module" src="pages/inbox.ts"></script>
+</body>
+</html>
