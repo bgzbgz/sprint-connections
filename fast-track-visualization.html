@@ -1,0 +1,2809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Track Program | Sprint Connections Map</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="Designs/01. favicon/favicon-16x16.png">
+    
+    <style>
+        /* ============================================
+           FAST TRACK BRAND FONTS
+           ============================================ */
+        @font-face {
+            font-family: 'Plaak';
+            src: url('Designs/03. Fonts/woff2/Plaak3Trial-43-Bold.woff2') format('woff2'),
+                 url('Designs/03. Fonts/opentype/Plaak3Trial-43-Bold.otf') format('opentype');
+            font-weight: bold;
+        }
+        
+        @font-face {
+            font-family: 'Riforma';
+            src: url('Designs/03. Fonts/woff2/RiformaLL-Regular.woff2') format('woff2'),
+                 url('Designs/03. Fonts/opentype/RiformaLL-Regular.otf') format('opentype');
+            font-weight: normal;
+        }
+        
+        @font-face {
+            font-family: 'Monument Grotesk Mono';
+            src: url('Designs/03. Fonts/woff2/MonumentGrotesk-Mono.woff2') format('woff2'),
+                 url('Designs/03. Fonts/opentype/MonumentGrotesk-Mono.otf') format('opentype');
+            font-weight: normal;
+        }
+
+        /* ============================================
+           FAST TRACK BRAND COLORS
+           ============================================ */
+        :root {
+            --ft-black: #000000;
+            --ft-white: #FFFFFF;
+            --ft-grey: #B2B2B2;
+            --ft-yellow: #FFF469;
+            --ft-dark-grey: #1a1a1a;
+            --ft-mid-grey: #2a2a2a;
+        }
+
+        /* ============================================
+           BASE STYLES
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Riforma', Georgia, serif;
+            background-color: var(--ft-black);
+            color: var(--ft-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ============================================
+           HEADER
+           ============================================ */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--ft-black);
+            border-bottom: 1px solid var(--ft-mid-grey);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            height: 40px;
+            width: auto;
+        }
+
+        .header-title {
+            font-family: 'Monument Grotesk Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--ft-grey);
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            font-family: 'Monument Grotesk Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--ft-grey);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--ft-yellow);
+        }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 8rem 4rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 60px,
+                    var(--ft-mid-grey) 60px,
+                    var(--ft-mid-grey) 61px
+                );
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .hero-label {
+            font-family: 'Monument Grotesk Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--ft-yellow);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-family: 'Plaak', Impact, sans-serif;
+            font-size: clamp(3rem, 10vw, 8rem);
+            text-transform: uppercase;
+            line-height: 0.9;
+            margin-bottom: 2rem;
+            max-width: 900px;
+        }
+
+        .hero h1 span {
+            color: var(--ft-yellow);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--ft-grey);
+            max-width: 600px;
+            margin-bottom: 3rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 4rem;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            text-align: left;
+        }
+
+        .stat-number {
+            font-family: 'Plaak', Impact, sans-serif;
+            font-size: 3rem;
+            color: var(--ft-yellow);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-family: 'Monument Grotesk Mono', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--ft-grey);
+            margin-top: 0.5rem;
+        }
+
+        /* ============================================
+           FLOW DIAGRAM SECTION
+           ============================================ */
+        .flow-section {
+            padding: 6rem 4rem;
+            background: var(--ft-dark-grey);
+            position: relative;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            font-family: 'Monument Grotesk Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--ft-yellow);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Plaak', Impact, sans-serif;
+            font-size: clamp(2rem, 5vw, 4rem);
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        /* ============================================
+           NEW TIMELINE FLOW VISUALIZATION
+           ============================================ */
+        .timeline-flow {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        /* Main horizontal timeline line */
+        .timeline-track {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 0 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .timeline-track::before {
+            content: '';
+            position: absolute;
+            top: 60px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--ft-yellow) 0%, var(--ft-grey) 50%, var(--ft-yellow) 100%);
+        }
+
+        /* Module Node */
+        .module-node {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            flex: 1;
+            max-width: 140px;
+        }
+
+        .module-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--ft-black);
+            border: 4px solid var(--ft-yellow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .module-circle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(255, 244, 105, 0.4);
+        }
+
+        .module-circle.active {
+            background: var(--ft-yellow);
+        }
+
+        .module-circle.active .module-num,
+        .module-circle.active .module-label {
+            color: var(--ft-black);
+        }
+
+        .module-num {
+            font-family: 'Plaak', Impact, sans-serif;
+            font-size: 2rem;
+            color: var(--ft-yellow);
+            line-height: 1;
+        }
+
+        .module-circle.active .module-num {
+            color: var(--ft-black);
+        }
+
+        .module-label {
+            font-family: 'Monument Grotesk Mono', monospace;
+            font-size: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ft-grey);
+            margin-top: 0.25rem;
+            text-align: center;
+            max-width: 80px;
+        }
+
+        .module-title {
+            font-family: 'Plaak', Impact, sans-serif;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            text-align: center;
+            margin-top: 1rem;
+            line-height: 1.2;
+            max-width: 120px;
+        }
+
+        .sprint-count {
+            font-family: 'Monument Grotesk Mono', monospace;
+            font-size: 0.6rem;
+            color: var(--ft-grey);
+            margin-top: 0.5rem;
+        }
+
+        /* Connection arrows between modules */
+        .module-connector {
+            position: absolute;
+            top: 58px;
+            right: -30px;
+            width: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .module-connector svg {
+            width: 24px;
+            height: 24px;
+            color: var(--ft-yellow);
+        }
+
+        /* Expanded Sprint View */
+        .sprint-expansion {
+            background: var(--ft-black);
+            border: 2px solid var(--ft-yellow);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-top: 2rem;
+            display: none;
+            animation: expandIn 0.3s ease;
+        }
+
+        .sprint-expansion.visible {
+            display: block;
+        }
+
+        @keyframes expandIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .expansion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--ft-mid-grey);
+        }
+
+        .expansion-title {
+            font-family: 'Plaak', Impact, sans-serif;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .expansion-close {
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: 1px solid var(--ft-grey);
+            color: var(--ft-grey);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .expansion-close:hover {
+            border-color: var(--ft-yellow);
+            color: var(--ft-yellow);
+        }
+
+        .sprint-flow-visual {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            overflow-x: auto;
+            padding: 1rem 0;
+        }
+
+        .sprint-node {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 100px;
+        }
+
+        .sprint-dot {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--ft-mid-grey);
+            border: 3px solid var(--ft-grey);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Plaak', Impact, sans-serif;
+            font-size: 1rem;
+            color: var(--ft-white);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .sprint-dot:hover {
+            border-color: var(--ft-yellow);
+            transform: scale(1.15);
+        }
+
+        .sprint-dot.starting {
+            background: var(--ft-yellow);
+            border-color: var(--ft-yellow);
+            color: var(--ft-black);
+        }
+
+        .sprint-dot.optional {
+            border-style: dashed;
+            opacity: 0.7;
+        }
+
+        .sprint-node-name {
+            font-family: 'Riforma', Georgia, serif;
+            font-size: 0.7rem;
+            text-align: center;
+            margin-top: 0.5rem;
+            max-width: 90px;
+            color: var(--ft-grey);
+        }
+
+        .sprint-arrow {
+            color: var(--ft-grey);
+            flex-shrink: 0;
+        }
+
+        .sprint-arrow svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* ============================================
+           VISUAL JOURNEY MAP
+           ============================================ */
+        .journey-map {
+            margin-top: 4rem;
+            padding: 3rem;
+            background: var(--ft-black);
+            border: 1px solid var(--ft-mid-grey);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .journey-map::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 244, 105, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(255, 244, 105, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .journey-title {
+            font-family: 'Monument Grotesk Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--ft-yellow);
+            margin-bottom: 2rem;
+        }
+
+        .journey-phases {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            position: relative;
+        }
+
+        @media (max-width: 1000px) {
+            .journey-phases {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .journey-phases {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .journey-phase {
+            padding: 2rem;
+            border-right: 1px solid var(--ft-mid-grey);
+            position: relative;
+        }
+
+        .journey-phase:last-child {
+            border-right: none;
+        }
+
+        .phase-number {
+            font-family: 'Plaak', Impact, sans-serif;
+            font-size: 4rem;
+            color: var(--ft-mid-grey);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .phase-name {
+            font-family: 'Plaak', Impact, sans-serif;
+            font-size: 1.25rem;
+            text-transform: uppercase;
+            color: var(--ft-yellow);
+            margin-bottom: 0.5rem;
+        }
+
+        .phase-desc {
+            font-size: 0.85rem;
+            color: var(--ft-grey);
+            margin-bottom: 1.5rem;
+        }
+
+        .phase-modules {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .phase-module-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: var(--ft-dark-grey);
+            border-left: 3px solid var(--ft-yellow);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .phase-module-item:hover {
+            background: var(--ft-mid-grey);
+            transform: translateX(4px);
+        }
+
+        .phase-module-num {
+            font-family: 'Plaak', Impact, sans-serif;
+            font-size: 1.25rem;
+            color: var(--ft-yellow);
+            min-width: 30px;
+        }
+
+        .phase-module-info {
+            flex: 1;
+        }
+
+        .phase-module-name {
+            font-family: 'Riforma', Georgia, serif;
+            font-size: 0.85rem;
+            color: var(--ft-white);
+        }
+
+        .phase-module-sprints {
+            font-family: 'Monument Grotesk Mono', monospace;
+            font-size: 0.6rem;
+            color: var(--ft-grey);
+            margin-top: 0.25rem;
+        }
+
+        /* Phase connector arrow */
+        .phase-arrow {
+            position: absolute;
+            right: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
+            color: var(--ft-yellow);
+        }
+
+        @media (max-width: 1000px) {
+            .phase-arrow {
+                display: none;
+            }
+        }
+
+        /* Old styles kept for compatibility but hidden */
+        .flow-container {
+            display: none;
+        }
+
+        /* ============================================
+           MODULES DETAIL SECTION
+           ============================================ */
+        .modules-section {
+            padding: 6rem 4rem;
+        }
+
+        .module-detail {
+            margin-bottom: 6rem;
+            padding-bottom: 4rem;
+            border-bottom: 1px solid var(--ft-mid-grey);
+        }
+
+        .module-detail:last-child {
+            border-bottom: none;
+        }
+
+        .module-title-row {
+            display: flex;
+            align-items: baseline;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .module-number {
+            font-family: 'Plaak', Impact, sans-serif;
+            font-size: 4rem;
+            color: var(--ft-yellow);
+            line-height: 1;
+        }
+
+        .module-name {
+            font-family: 'Plaak', Impact, sans-serif;
+            font-size: 2rem;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .sprints-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .sprint-detail-card {
+            background: var(--ft-dark-grey);
+            border: 1px solid var(--ft-mid-grey);
+            padding: 2rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .sprint-detail-card:hover {
+            border-color: var(--ft-yellow);
+        }
+
+        .sprint-detail-card.starting::before {
+            content: 'STARTING SPRINT';
+            position: absolute;
+            top: -0.75rem;
+            left: 1rem;
+            font-family: 'Monument Grotesk Mono', monospace;
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ft-black);
+            background: var(--ft-yellow);
+            padding: 0.3rem 0.6rem;
+        }
+
+        .sprint-detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .sprint-detail-number {
+            font-family: 'Monument Grotesk Mono', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--ft-yellow);
+        }
+
+        .sprint-detail-name {
+            font-family: 'Plaak', Impact, sans-serif;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-top: 0.5rem;
+        }
+
+        .sprint-badge {
+            font-family: 'Monument Grotesk Mono', monospace;
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.3rem 0.6rem;
+            background: var(--ft-mid-grey);
+            color: var(--ft-grey);
+        }
+
+        .sprint-badge.optional {
+            background: transparent;
+            border: 1px solid var(--ft-grey);
+        }
+
+        /* Dependencies Section */
+        .dependencies-section {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--ft-mid-grey);
+        }
+
+        .dependencies-label {
+            font-family: 'Monument Grotesk Mono', monospace;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--ft-grey);
+            margin-bottom: 0.75rem;
+        }
+
+        .dependency-tag {
+            display: inline-block;
+            font-family: 'Monument Grotesk Mono', monospace;
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.3rem 0.6rem;
+            margin: 0.25rem 0.25rem 0.25rem 0;
+            background: var(--ft-black);
+            border: 1px solid var(--ft-mid-grey);
+            color: var(--ft-grey);
+            transition: all 0.2s ease;
+        }
+
+        .dependency-tag:hover {
+            border-color: var(--ft-yellow);
+            color: var(--ft-yellow);
+        }
+
+        /* Outputs Section */
+        .outputs-section {
+            margin-top: 1.5rem;
+        }
+
+        .outputs-label {
+            font-family: 'Monument Grotesk Mono', monospace;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--ft-grey);
+            margin-bottom: 0.75rem;
+        }
+
+        .output-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--ft-mid-grey);
+        }
+
+        .output-item:last-child {
+            border-bottom: none;
+        }
+
+        .output-bullet {
+            width: 6px;
+            height: 6px;
+            background: var(--ft-yellow);
+            margin-top: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .output-text {
+            font-size: 0.9rem;
+            color: var(--ft-white);
+        }
+
+        .output-id {
+            font-family: 'Monument Grotesk Mono', monospace;
+            font-size: 0.55rem;
+            color: var(--ft-grey);
+            display: block;
+            margin-top: 0.25rem;
+        }
+
+        /* ============================================
+           KEY INSIGHTS SECTION
+           ============================================ */
+        .insights-section {
+            padding: 6rem 4rem;
+            background: var(--ft-dark-grey);
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .insight-card {
+            background: var(--ft-black);
+            border: 1px solid var(--ft-mid-grey);
+            padding: 2rem;
+            position: relative;
+        }
+
+        .insight-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--ft-yellow);
+        }
+
+        .insight-rank {
+            font-family: 'Plaak', Impact, sans-serif;
+            font-size: 3rem;
+            color: var(--ft-yellow);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .insight-field {
+            font-family: 'Monument Grotesk Mono', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ft-grey);
+            margin-bottom: 0.5rem;
+            word-break: break-all;
+        }
+
+        .insight-name {
+            font-family: 'Plaak', Impact, sans-serif;
+            font-size: 1.25rem;
+            text-transform: uppercase;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .insight-usage {
+            font-size: 0.9rem;
+            color: var(--ft-grey);
+        }
+
+        .insight-usage strong {
+            color: var(--ft-yellow);
+        }
+
+        /* ============================================
+           DEPENDENCY MATRIX SECTION
+           ============================================ */
+        .matrix-section {
+            padding: 6rem 4rem;
+            overflow-x: auto;
+        }
+
+        .matrix-container {
+            min-width: 800px;
+        }
+
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 3rem;
+        }
+
+        .matrix-table th,
+        .matrix-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--ft-mid-grey);
+        }
+
+        .matrix-table th {
+            font-family: 'Monument Grotesk Mono', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--ft-grey);
+            background: var(--ft-dark-grey);
+            position: sticky;
+            top: 0;
+        }
+
+        .matrix-table td {
+            font-size: 0.9rem;
+        }
+
+        .matrix-table tr:hover {
+            background: var(--ft-dark-grey);
+        }
+
+        .matrix-sprint-name {
+            font-family: 'Riforma', Georgia, serif;
+            font-weight: normal;
+        }
+
+        .matrix-deps {
+            font-family: 'Monument Grotesk Mono', monospace;
+            font-size: 0.8rem;
+        }
+
+        .matrix-bar {
+            height: 8px;
+            background: var(--ft-mid-grey);
+            position: relative;
+            min-width: 200px;
+        }
+
+        .matrix-bar-fill {
+            height: 100%;
+            background: var(--ft-yellow);
+            transition: width 0.5s ease;
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        footer {
+            padding: 4rem;
+            background: var(--ft-black);
+            border-top: 1px solid var(--ft-mid-grey);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .footer-logo {
+            height: 30px;
+            width: auto;
+        }
+
+        .footer-tagline {
+            font-family: 'Monument Grotesk Mono', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--ft-grey);
+        }
+
+        .footer-copy {
+            font-family: 'Monument Grotesk Mono', monospace;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ft-grey);
+        }
+
+        /* ============================================
+           ANIMATIONS
+           ============================================ */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes barSweep {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .hero h1 {
+            animation: fadeInUp 0.8s ease forwards;
+            animation-delay: 0.2s;
+            opacity: 0;
+        }
+
+        .hero-subtitle {
+            animation: fadeInUp 0.8s ease forwards;
+            animation-delay: 0.4s;
+            opacity: 0;
+        }
+
+        .hero-stats {
+            animation: fadeInUp 0.8s ease forwards;
+            animation-delay: 0.6s;
+            opacity: 0;
+        }
+
+        /* Staggered card animations */
+        .sprint-card {
+            opacity: 0;
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        .sprint-card:nth-child(1) { animation-delay: 0.1s; }
+        .sprint-card:nth-child(2) { animation-delay: 0.15s; }
+        .sprint-card:nth-child(3) { animation-delay: 0.2s; }
+        .sprint-card:nth-child(4) { animation-delay: 0.25s; }
+        .sprint-card:nth-child(5) { animation-delay: 0.3s; }
+        .sprint-card:nth-child(6) { animation-delay: 0.35s; }
+        .sprint-card:nth-child(7) { animation-delay: 0.4s; }
+
+        /* Loading bar animation */
+        .loading-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--ft-yellow);
+            width: 0;
+            z-index: 9999;
+            transition: width 0.3s ease;
+        }
+
+        /* ============================================
+           RESPONSIVE ADJUSTMENTS
+           ============================================ */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 6rem 2rem 2rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .flow-section,
+            .modules-section,
+            .insights-section,
+            .matrix-section {
+                padding: 4rem 2rem;
+            }
+
+            .module-title-row {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            header {
+                padding: 1rem;
+            }
+
+            nav {
+                display: none;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .footer-brand {
+                flex-direction: column;
+            }
+        }
+
+        /* ============================================
+           SCROLL INDICATOR
+           ============================================ */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--ft-grey);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator span {
+            font-family: 'Monument Grotesk Mono', monospace;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        /* ============================================
+           TOOLTIP
+           ============================================ */
+        .tooltip {
+            position: fixed;
+            background: var(--ft-black);
+            border: 1px solid var(--ft-yellow);
+            padding: 1rem 1.5rem;
+            max-width: 300px;
+            z-index: 1001;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .tooltip.visible {
+            opacity: 1;
+        }
+
+        .tooltip-title {
+            font-family: 'Plaak', Impact, sans-serif;
+            font-size: 1rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .tooltip-content {
+            font-size: 0.85rem;
+            color: var(--ft-grey);
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-bar" id="loadingBar"></div>
+
+    <header>
+        <img src="Designs/02. logos/FastTrack_F_White.png" alt="Fast Track" class="logo">
+        <span class="header-title">Sprint Connections Map</span>
+        <nav>
+            <a href="#flow">Program Flow</a>
+            <a href="#modules">Modules</a>
+            <a href="#insights">Key Insights</a>
+            <a href="#matrix">Dependency Matrix</a>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <span class="hero-label">Fast Track Program</span>
+        <h1>Sprint <span>Connections</span> Map</h1>
+        <p class="hero-subtitle">A comprehensive visualization of the Fast Track Program flow, showing all 31 sprints across 9 modules with their dependencies and outputs.</p>
+        
+        <div class="hero-stats">
+            <div class="stat">
+                <div class="stat-number">9</div>
+                <div class="stat-label">Modules</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">31</div>
+                <div class="stat-label">Sprints</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">~130</div>
+                <div class="stat-label">Output Fields</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">~75</div>
+                <div class="stat-label">Dependencies</div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <span>Scroll to explore</span>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M19 12l-7 7-7-7"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- FLOW DIAGRAM SECTION -->
+    <section class="flow-section" id="flow">
+        <div class="section-header">
+            <span class="section-label">Visual Overview</span>
+            <h2 class="section-title">Program Flow</h2>
+        </div>
+
+        <!-- CLEAN JOURNEY MAP VISUALIZATION -->
+        <div class="journey-map">
+            <div class="journey-title">The Fast Track Journey — 4 Phases, 9 Modules, 31 Sprints</div>
+            
+            <div class="journey-phases">
+                <!-- Phase 1: Foundation -->
+                <div class="journey-phase">
+                    <div class="phase-number">01</div>
+                    <div class="phase-name">Foundation</div>
+                    <div class="phase-desc">Establish identity, values, and team alignment</div>
+                    
+                    <div class="phase-modules">
+                        <div class="phase-module-item" data-module="0">
+                            <div class="phase-module-num">0</div>
+                            <div class="phase-module-info">
+                                <div class="phase-module-name">Intro Mission</div>
+                                <div class="phase-module-sprints">Starting point</div>
+                            </div>
+                        </div>
+                        <div class="phase-module-item" data-module="1">
+                            <div class="phase-module-num">1</div>
+                            <div class="phase-module-info">
+                                <div class="phase-module-name">Identity</div>
+                                <div class="phase-module-sprints">5 sprints → Know Thyself, Dream, Values, Team, FIT</div>
+                            </div>
+                        </div>
+                        <div class="phase-module-item" data-module="2">
+                            <div class="phase-module-num">2</div>
+                            <div class="phase-module-info">
+                                <div class="phase-module-name">Performance</div>
+                                <div class="phase-module-sprints">6 sprints → Cash, Energy*, Goals, Focus, Accountability, Meetings</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="phase-arrow">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Phase 2: Strategy -->
+                <div class="journey-phase">
+                    <div class="phase-number">02</div>
+                    <div class="phase-name">Strategy</div>
+                    <div class="phase-desc">Understand market and develop value proposition</div>
+                    
+                    <div class="phase-modules">
+                        <div class="phase-module-item" data-module="3">
+                            <div class="phase-module-num">3</div>
+                            <div class="phase-module-info">
+                                <div class="phase-module-name">Market</div>
+                                <div class="phase-module-sprints">2 sprints → Market Size, Segmentation</div>
+                            </div>
+                        </div>
+                        <div class="phase-module-item" data-module="4">
+                            <div class="phase-module-num">4</div>
+                            <div class="phase-module-info">
+                                <div class="phase-module-name">Strategy</div>
+                                <div class="phase-module-sprints">3 sprints → Target Deep Dive, Value Prop, VP Testing</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="phase-arrow">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Phase 3: Execution -->
+                <div class="journey-phase">
+                    <div class="phase-number">03</div>
+                    <div class="phase-name">Execution</div>
+                    <div class="phase-desc">Build products, pricing, brand, and go-to-market</div>
+                    
+                    <div class="phase-modules">
+                        <div class="phase-module-item" data-module="5">
+                            <div class="phase-module-num">5</div>
+                            <div class="phase-module-info">
+                                <div class="phase-module-name">Execution</div>
+                                <div class="phase-module-sprints">5 sprints → Product, Pricing, Brand, Service*, RTM</div>
+                            </div>
+                        </div>
+                        <div class="phase-module-item" data-module="6">
+                            <div class="phase-module-num">6</div>
+                            <div class="phase-module-info">
+                                <div class="phase-module-name">Organisation</div>
+                                <div class="phase-module-sprints">4 sprints → Core Activities, Processes, ABC, Org Design</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="phase-arrow">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Phase 4: Scale -->
+                <div class="journey-phase">
+                    <div class="phase-number">04</div>
+                    <div class="phase-name">Scale</div>
+                    <div class="phase-desc">People, technology, and 12-month roadmap</div>
+                    
+                    <div class="phase-modules">
+                        <div class="phase-module-item" data-module="7">
+                            <div class="phase-module-num">7</div>
+                            <div class="phase-module-info">
+                                <div class="phase-module-name">People</div>
+                                <div class="phase-module-sprints">2 sprints → Employer Branding, Agile Teams*</div>
+                            </div>
+                        </div>
+                        <div class="phase-module-item" data-module="8">
+                            <div class="phase-module-num">8</div>
+                            <div class="phase-module-info">
+                                <div class="phase-module-name">Tech & AI</div>
+                                <div class="phase-module-sprints">3 sprints → Digitalization, Digital Heart, Program Overview</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- INTERACTIVE MODULE TIMELINE -->
+        <div class="timeline-flow" style="margin-top: 4rem;">
+            <div class="journey-title" style="margin-bottom: 2rem;">Click a module to see its sprints</div>
+            
+            <div class="timeline-track">
+                <div class="module-node">
+                    <div class="module-circle" data-module="1" onclick="showModuleSprints(1)">
+                        <span class="module-num">1</span>
+                        <span class="module-label">Identity</span>
+                    </div>
+                    <div class="module-title">Know Thyself</div>
+                    <div class="sprint-count">5 sprints</div>
+                    <div class="module-connector">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="module-node">
+                    <div class="module-circle" data-module="2" onclick="showModuleSprints(2)">
+                        <span class="module-num">2</span>
+                        <span class="module-label">Performance</span>
+                    </div>
+                    <div class="module-title">Cash & Goals</div>
+                    <div class="sprint-count">6 sprints</div>
+                    <div class="module-connector">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="module-node">
+                    <div class="module-circle" data-module="3" onclick="showModuleSprints(3)">
+                        <span class="module-num">3</span>
+                        <span class="module-label">Market</span>
+                    </div>
+                    <div class="module-title">Market Size</div>
+                    <div class="sprint-count">2 sprints</div>
+                    <div class="module-connector">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="module-node">
+                    <div class="module-circle" data-module="4" onclick="showModuleSprints(4)">
+                        <span class="module-num">4</span>
+                        <span class="module-label">Strategy</span>
+                    </div>
+                    <div class="module-title">Value Prop</div>
+                    <div class="sprint-count">3 sprints</div>
+                    <div class="module-connector">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="module-node">
+                    <div class="module-circle" data-module="5" onclick="showModuleSprints(5)">
+                        <span class="module-num">5</span>
+                        <span class="module-label">Execution</span>
+                    </div>
+                    <div class="module-title">Go-to-Market</div>
+                    <div class="sprint-count">5 sprints</div>
+                    <div class="module-connector">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="module-node">
+                    <div class="module-circle" data-module="6" onclick="showModuleSprints(6)">
+                        <span class="module-num">6</span>
+                        <span class="module-label">Organisation</span>
+                    </div>
+                    <div class="module-title">Structure</div>
+                    <div class="sprint-count">4 sprints</div>
+                    <div class="module-connector">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="module-node">
+                    <div class="module-circle" data-module="7" onclick="showModuleSprints(7)">
+                        <span class="module-num">7</span>
+                        <span class="module-label">People</span>
+                    </div>
+                    <div class="module-title">Talent</div>
+                    <div class="sprint-count">2 sprints</div>
+                    <div class="module-connector">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="module-node">
+                    <div class="module-circle" data-module="8" onclick="showModuleSprints(8)">
+                        <span class="module-num">8</span>
+                        <span class="module-label">Tech & AI</span>
+                    </div>
+                    <div class="module-title">Digital</div>
+                    <div class="sprint-count">3 sprints</div>
+                </div>
+            </div>
+
+            <!-- Sprint Expansion Panel -->
+            <div class="sprint-expansion" id="sprintExpansion">
+                <div class="expansion-header">
+                    <div class="expansion-title" id="expansionTitle">Module 1: Identity</div>
+                    <button class="expansion-close" onclick="closeExpansion()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 6L6 18M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="sprint-flow-visual" id="sprintFlowVisual">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Legend -->
+        <div style="margin-top: 3rem; display: flex; gap: 2rem; flex-wrap: wrap;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <div style="width: 16px; height: 16px; border-radius: 50%; background: var(--ft-yellow);"></div>
+                <span style="font-family: 'Monument Grotesk Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ft-grey);">Starting Sprint</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <div style="width: 16px; height: 16px; border-radius: 50%; border: 2px dashed var(--ft-grey);"></div>
+                <span style="font-family: 'Monument Grotesk Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ft-grey);">Optional Sprint</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <div style="width: 16px; height: 16px; border-radius: 50%; background: var(--ft-mid-grey); border: 2px solid var(--ft-grey);"></div>
+                <span style="font-family: 'Monument Grotesk Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ft-grey);">Regular Sprint</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODULES DETAIL SECTION -->
+    <section class="modules-section" id="modules">
+        <div class="section-header">
+            <span class="section-label">Detailed Breakdown</span>
+            <h2 class="section-title">All Modules & Sprints</h2>
+        </div>
+
+        <!-- Module 1 -->
+        <div class="module-detail">
+            <div class="module-title-row">
+                <span class="module-number">01</span>
+                <h3 class="module-name">Individual and Company Identity</h3>
+            </div>
+            
+            <div class="sprints-grid">
+                <!-- Sprint 1: Know Thyself -->
+                <div class="sprint-detail-card starting">
+                    <div class="sprint-detail-header">
+                        <div>
+                            <div class="sprint-detail-number">Sprint 1</div>
+                            <div class="sprint-detail-name">Know Thyself</div>
+                        </div>
+                        <span class="sprint-badge">Starting Point</span>
+                    </div>
+                    
+                    <div class="outputs-section">
+                        <div class="outputs-label">Key Outputs</div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">Individual Strength Matrix</span>
+                                <span class="output-id">identity.strengths.matrix</span>
+                            </div>
+                        </div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">Personal Dream/Legacy</span>
+                                <span class="output-id">identity.personal_dream</span>
+                            </div>
+                        </div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">Core Personal Values</span>
+                                <span class="output-id">identity.personal_values</span>
+                            </div>
+                        </div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">90-Day Personal Commitment</span>
+                                <span class="output-id">identity.ninety_day_commitment</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sprint 2: Dream -->
+                <div class="sprint-detail-card">
+                    <div class="sprint-detail-header">
+                        <div>
+                            <div class="sprint-detail-number">Sprint 2</div>
+                            <div class="sprint-detail-name">Dream</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dependencies-section">
+                        <div class="dependencies-label">Dependencies</div>
+                        <span class="dependency-tag">Know Thyself → personal_dream</span>
+                        <span class="dependency-tag">Know Thyself → personal_values</span>
+                    </div>
+                    
+                    <div class="outputs-section">
+                        <div class="outputs-label">Key Outputs</div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">Company Dream Narrative</span>
+                                <span class="output-id">identity.dream.narrative</span>
+                            </div>
+                        </div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">One-Sentence Dream</span>
+                                <span class="output-id">identity.dream.one_sentence</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sprint 3: Values -->
+                <div class="sprint-detail-card">
+                    <div class="sprint-detail-header">
+                        <div>
+                            <div class="sprint-detail-number">Sprint 3</div>
+                            <div class="sprint-detail-name">Values</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dependencies-section">
+                        <div class="dependencies-label">Dependencies</div>
+                        <span class="dependency-tag">Dream → one_sentence</span>
+                        <span class="dependency-tag">Know Thyself → personal_values</span>
+                    </div>
+                    
+                    <div class="outputs-section">
+                        <div class="outputs-label">Key Outputs</div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">Core Company Values (5-7)</span>
+                                <span class="output-id">identity.values.core_list</span>
+                            </div>
+                        </div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">Cool vs Not-Cool Behaviors</span>
+                                <span class="output-id">identity.values.cool_not_cool</span>
+                            </div>
+                        </div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">Cultural Laws (Red Lines)</span>
+                                <span class="output-id">identity.values.red_lines</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sprint 4: Team -->
+                <div class="sprint-detail-card">
+                    <div class="sprint-detail-header">
+                        <div>
+                            <div class="sprint-detail-number">Sprint 4</div>
+                            <div class="sprint-detail-name">Team</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dependencies-section">
+                        <div class="dependencies-label">Dependencies</div>
+                        <span class="dependency-tag">Values → cool_not_cool</span>
+                        <span class="dependency-tag">Dream → one_sentence</span>
+                    </div>
+                    
+                    <div class="outputs-section">
+                        <div class="outputs-label">Key Outputs</div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">Team Dysfunction Scorecard</span>
+                                <span class="output-id">identity.team.dysfunction_scorecard</span>
+                            </div>
+                        </div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">Conflict Norms</span>
+                                <span class="output-id">identity.team.conflict_norms</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sprint 5: FIT -->
+                <div class="sprint-detail-card">
+                    <div class="sprint-detail-header">
+                        <div>
+                            <div class="sprint-detail-number">Sprint 5</div>
+                            <div class="sprint-detail-name">FIT Assessment</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dependencies-section">
+                        <div class="dependencies-label">Dependencies</div>
+                        <span class="dependency-tag">Know Thyself → strengths.matrix</span>
+                        <span class="dependency-tag">Values → core_list</span>
+                        <span class="dependency-tag">Team → dysfunction_score</span>
+                    </div>
+                    
+                    <div class="outputs-section">
+                        <div class="outputs-label">Key Outputs</div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">Individual FIT Scores</span>
+                                <span class="output-id">identity.fit.individual_scores</span>
+                            </div>
+                        </div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">ABC Tool Matrix</span>
+                                <span class="output-id">identity.fit.abc_matrix</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 2 -->
+        <div class="module-detail">
+            <div class="module-title-row">
+                <span class="module-number">02</span>
+                <h3 class="module-name">Core Elements of Performance</h3>
+            </div>
+            
+            <div class="sprints-grid">
+                <!-- Sprint 6: Cash Position -->
+                <div class="sprint-detail-card">
+                    <div class="sprint-detail-header">
+                        <div>
+                            <div class="sprint-detail-number">Sprint 6</div>
+                            <div class="sprint-detail-name">Current Cash Position</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dependencies-section">
+                        <div class="dependencies-label">Dependencies</div>
+                        <span class="dependency-tag">Dream → narrative</span>
+                    </div>
+                    
+                    <div class="outputs-section">
+                        <div class="outputs-label">Key Outputs</div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">Cash Flow Story Report</span>
+                                <span class="output-id">performance.cash.story_report</span>
+                            </div>
+                        </div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">Power of One Analysis</span>
+                                <span class="output-id">performance.cash.power_of_one</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sprint 7: Energy (Optional) -->
+                <div class="sprint-detail-card">
+                    <div class="sprint-detail-header">
+                        <div>
+                            <div class="sprint-detail-number">Sprint 7</div>
+                            <div class="sprint-detail-name">Creating Energy</div>
+                        </div>
+                        <span class="sprint-badge optional">Optional</span>
+                    </div>
+                    
+                    <div class="dependencies-section">
+                        <div class="dependencies-label">Dependencies</div>
+                        <span class="dependency-tag">Know Thyself → strengths.matrix</span>
+                    </div>
+                    
+                    <div class="outputs-section">
+                        <div class="outputs-label">Key Outputs</div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">Energy Audit (Stop/Less/More)</span>
+                                <span class="output-id">performance.energy.audit</span>
+                            </div>
+                        </div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">Individual WOOP for Habits</span>
+                                <span class="output-id">performance.energy.woop</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sprint 8: Goals -->
+                <div class="sprint-detail-card">
+                    <div class="sprint-detail-header">
+                        <div>
+                            <div class="sprint-detail-number">Sprint 8</div>
+                            <div class="sprint-detail-name">Goals, Priorities & Planning</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dependencies-section">
+                        <div class="dependencies-label">Dependencies</div>
+                        <span class="dependency-tag">Dream → narrative</span>
+                        <span class="dependency-tag">Cash → power_of_one</span>
+                    </div>
+                    
+                    <div class="outputs-section">
+                        <div class="outputs-label">Key Outputs</div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">Quarterly Targets</span>
+                                <span class="output-id">performance.goals.quarterly_targets</span>
+                            </div>
+                        </div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">Big Rocks (90-Day Priorities)</span>
+                                <span class="output-id">performance.goals.big_rocks</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sprint 9: Focus -->
+                <div class="sprint-detail-card">
+                    <div class="sprint-detail-header">
+                        <div>
+                            <div class="sprint-detail-number">Sprint 9</div>
+                            <div class="sprint-detail-name">Focus, Discipline & Productivity</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dependencies-section">
+                        <div class="dependencies-label">Dependencies</div>
+                        <span class="dependency-tag">Goals → big_rocks</span>
+                        <span class="dependency-tag">Values → core_list</span>
+                    </div>
+                    
+                    <div class="outputs-section">
+                        <div class="outputs-label">Key Outputs</div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">Golden Hour Schedule</span>
+                                <span class="output-id">performance.focus.golden_hour</span>
+                            </div>
+                        </div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">Distraction Management Plan</span>
+                                <span class="output-id">performance.focus.distraction_plan</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sprint 10: Performance -->
+                <div class="sprint-detail-card">
+                    <div class="sprint-detail-header">
+                        <div>
+                            <div class="sprint-detail-number">Sprint 10</div>
+                            <div class="sprint-detail-name">Performance & Accountability</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dependencies-section">
+                        <div class="dependencies-label">Dependencies</div>
+                        <span class="dependency-tag">Goals → quarterly_targets</span>
+                        <span class="dependency-tag">Values → cool_not_cool</span>
+                    </div>
+                    
+                    <div class="outputs-section">
+                        <div class="outputs-label">Key Outputs</div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">Binary Scoreboard</span>
+                                <span class="output-id">performance.accountability.binary_scoreboard</span>
+                            </div>
+                        </div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">KPI Dashboards</span>
+                                <span class="output-id">performance.accountability.kpi_dashboards</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sprint 11: Meeting Rhythm -->
+                <div class="sprint-detail-card">
+                    <div class="sprint-detail-header">
+                        <div>
+                            <div class="sprint-detail-number">Sprint 11</div>
+                            <div class="sprint-detail-name">Meeting Rhythm</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dependencies-section">
+                        <div class="dependencies-label">Dependencies</div>
+                        <span class="dependency-tag">Performance → binary_scoreboard</span>
+                        <span class="dependency-tag">Team → conflict_norms</span>
+                    </div>
+                    
+                    <div class="outputs-section">
+                        <div class="outputs-label">Key Outputs</div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">Standardized Meeting Charter</span>
+                                <span class="output-id">performance.meetings.charter</span>
+                            </div>
+                        </div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">Fast Track Hour Agenda</span>
+                                <span class="output-id">performance.meetings.fast_track_hour</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 3 -->
+        <div class="module-detail">
+            <div class="module-title-row">
+                <span class="module-number">03</span>
+                <h3 class="module-name">Understanding the Market</h3>
+            </div>
+            
+            <div class="sprints-grid">
+                <!-- Sprint 12: Market Size -->
+                <div class="sprint-detail-card">
+                    <div class="sprint-detail-header">
+                        <div>
+                            <div class="sprint-detail-number">Sprint 12</div>
+                            <div class="sprint-detail-name">Market Size</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dependencies-section">
+                        <div class="dependencies-label">Dependencies</div>
+                        <span class="dependency-tag">Dream → narrative</span>
+                    </div>
+                    
+                    <div class="outputs-section">
+                        <div class="outputs-label">Key Outputs</div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">Market Size (TAM)</span>
+                                <span class="output-id">market.size.tam</span>
+                            </div>
+                        </div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">Top 3-5 Driving Forces</span>
+                                <span class="output-id">market.size.driving_forces</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sprint 13: Segmentation -->
+                <div class="sprint-detail-card">
+                    <div class="sprint-detail-header">
+                        <div>
+                            <div class="sprint-detail-number">Sprint 13</div>
+                            <div class="sprint-detail-name">Segmentation & Target Market</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dependencies-section">
+                        <div class="dependencies-label">Dependencies</div>
+                        <span class="dependency-tag">Market Size → tam</span>
+                        <span class="dependency-tag">Market Size → driving_forces</span>
+                        <span class="dependency-tag">Cash → power_of_one</span>
+                    </div>
+                    
+                    <div class="outputs-section">
+                        <div class="outputs-label">Key Outputs</div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">Behavioral Customer Segments</span>
+                                <span class="output-id">market.segments.list</span>
+                            </div>
+                        </div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">Primary Target Segment</span>
+                                <span class="output-id">market.segments.primary_target</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 4 -->
+        <div class="module-detail">
+            <div class="module-title-row">
+                <span class="module-number">04</span>
+                <h3 class="module-name">Strategy Development</h3>
+            </div>
+            
+            <div class="sprints-grid">
+                <!-- Sprint 14: Target Deep Dive -->
+                <div class="sprint-detail-card">
+                    <div class="sprint-detail-header">
+                        <div>
+                            <div class="sprint-detail-number">Sprint 14</div>
+                            <div class="sprint-detail-name">Target Segment Deep Dive</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dependencies-section">
+                        <div class="dependencies-label">Dependencies</div>
+                        <span class="dependency-tag">Segmentation → primary_target</span>
+                        <span class="dependency-tag">Market Size → profit_pool</span>
+                    </div>
+                    
+                    <div class="outputs-section">
+                        <div class="outputs-label">Key Outputs</div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">Prioritized Pains Matrix</span>
+                                <span class="output-id">strategy.target.pains_matrix</span>
+                            </div>
+                        </div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">Core Customer Persona</span>
+                                <span class="output-id">strategy.target.persona</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sprint 15: Value Proposition -->
+                <div class="sprint-detail-card">
+                    <div class="sprint-detail-header">
+                        <div>
+                            <div class="sprint-detail-number">Sprint 15</div>
+                            <div class="sprint-detail-name">Value Proposition</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dependencies-section">
+                        <div class="dependencies-label">Dependencies</div>
+                        <span class="dependency-tag">Target → pains_matrix</span>
+                        <span class="dependency-tag">Target → needs_gains</span>
+                        <span class="dependency-tag">Dream → one_sentence</span>
+                        <span class="dependency-tag">Know Thyself → strengths.matrix</span>
+                    </div>
+                    
+                    <div class="outputs-section">
+                        <div class="outputs-label">Key Outputs</div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">Value Proposition Statement</span>
+                                <span class="output-id">strategy.vp.statement</span>
+                            </div>
+                        </div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">Differentiator Audit</span>
+                                <span class="output-id">strategy.vp.differentiators</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sprint 16: VP Testing -->
+                <div class="sprint-detail-card">
+                    <div class="sprint-detail-header">
+                        <div>
+                            <div class="sprint-detail-number">Sprint 16</div>
+                            <div class="sprint-detail-name">Value Proposition Testing</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dependencies-section">
+                        <div class="dependencies-label">Dependencies</div>
+                        <span class="dependency-tag">VP → statement</span>
+                        <span class="dependency-tag">Target → interview_summary</span>
+                    </div>
+                    
+                    <div class="outputs-section">
+                        <div class="outputs-label">Key Outputs</div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">Willingness to Pay Data</span>
+                                <span class="output-id">strategy.testing.wtp_data</span>
+                            </div>
+                        </div>
+                        <div class="output-item">
+                            <div class="output-bullet"></div>
+                            <div>
+                                <span class="output-text">Finalized Value Proposition</span>
+                                <span class="output-id">strategy.testing.final_vp</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 5 -->
+        <div class="module-detail">
+            <div class="module-title-row">
+                <span class="module-number">05</span>
+                <h3 class="module-name">Strategy Execution</h3>
+            </div>
+            
+            <div class="sprints-grid">
+                <!-- Sprint 17-21 abbreviated for space -->
+                <div class="sprint-detail-card">
+                    <div class="sprint-detail-header">
+                        <div>
+                            <div class="sprint-detail-number">Sprint 17</div>
+                            <div class="sprint-detail-name">Product Development</div>
+                        </div>
+                    </div>
+                    <div class="dependencies-section">
+                        <div class="dependencies-label">Dependencies</div>
+                        <span class="dependency-tag">VP → statement</span>
+                        <span class="dependency-tag">Target → pains_matrix</span>
+                    </div>
+                </div>
+
+                <div class="sprint-detail-card">
+                    <div class="sprint-detail-header">
+                        <div>
+                            <div class="sprint-detail-number">Sprint 18</div>
+                            <div class="sprint-detail-name">Strategy Driven Pricing</div>
+                        </div>
+                    </div>
+                    <div class="dependencies-section">
+                        <div class="dependencies-label">Dependencies</div>
+                        <span class="dependency-tag">Product → feature_list</span>
+                        <span class="dependency-tag">Segmentation → primary_target</span>
+                    </div>
+                </div>
+
+                <div class="sprint-detail-card">
+                    <div class="sprint-detail-header">
+                        <div>
+                            <div class="sprint-detail-number">Sprint 19</div>
+                            <div class="sprint-detail-name">Brand & Marketing</div>
+                        </div>
+                    </div>
+                    <div class="dependencies-section">
+                        <div class="dependencies-label">Dependencies</div>
+                        <span class="dependency-tag">Pricing → anchor</span>
+                        <span class="dependency-tag">Product → portfolio</span>
+                        <span class="dependency-tag">VP → statement</span>
+                    </div>
+                </div>
+
+                <div class="sprint-detail-card">
+                    <div class="sprint-detail-header">
+                        <div>
+                            <div class="sprint-detail-number">Sprint 20</div>
+                            <div class="sprint-detail-name">Customer Service Strategy</div>
+                        </div>
+                        <span class="sprint-badge optional">Optional</span>
+                    </div>
+                    <div class="dependencies-section">
+                        <div class="dependencies-label">Dependencies</div>
+                        <span class="dependency-tag">Brand → cult_model</span>
+                        <span class="dependency-tag">Target → interview_summary</span>
+                    </div>
+                </div>
+
+                <div class="sprint-detail-card">
+                    <div class="sprint-detail-header">
+                        <div>
+                            <div class="sprint-detail-number">Sprint 21</div>
+                            <div class="sprint-detail-name">Route to Market</div>
+                        </div>
+                    </div>
+                    <div class="dependencies-section">
+                        <div class="dependencies-label">Dependencies</div>
+                        <span class="dependency-tag">Customer Service → journey_map</span>
+                        <span class="dependency-tag">Pricing → tiers</span>
+                        <span class="dependency-tag">VP → statement</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 6 -->
+        <div class="module-detail">
+            <div class="module-title-row">
+                <span class="module-number">06</span>
+                <h3 class="module-name">Organisational Structure</h3>
+            </div>
+            
+            <div class="sprints-grid">
+                <div class="sprint-detail-card">
+                    <div class="sprint-detail-header">
+                        <div>
+                            <div class="sprint-detail-number">Sprint 22</div>
+                            <div class="sprint-detail-name">Define Core Activities</div>
+                        </div>
+                    </div>
+                    <div class="dependencies-section">
+                        <div class="dependencies-label">Dependencies</div>
+                        <span class="dependency-tag">VP → statement</span>
+                        <span class="dependency-tag">RTM → channels</span>
+                        <span class="dependency-tag">Brand → cult_model</span>
+                    </div>
+                </div>
+
+                <div class="sprint-detail-card">
+                    <div class="sprint-detail-header">
+                        <div>
+                            <div class="sprint-detail-number">Sprint 23</div>
+                            <div class="sprint-detail-name">Processes, Decisions & Capabilities</div>
+                        </div>
+                    </div>
+                    <div class="dependencies-section">
+                        <div class="dependencies-label">Dependencies</div>
+                        <span class="dependency-tag">Core Activities → top5</span>
+                        <span class="dependency-tag">Pricing → anchor</span>
+                        <span class="dependency-tag">Know Thyself → strengths.matrix</span>
+                    </div>
+                </div>
+
+                <div class="sprint-detail-card">
+                    <div class="sprint-detail-header">
+                        <div>
+                            <div class="sprint-detail-number">Sprint 24</div>
+                            <div class="sprint-detail-name">FIT & ABC Analysis</div>
+                        </div>
+                    </div>
+                    <div class="dependencies-section">
+                        <div class="dependencies-label">Dependencies</div>
+                        <span class="dependency-tag">Processes → capabilities</span>
+                        <span class="dependency-tag">Values → cool_not_cool</span>
+                    </div>
+                </div>
+
+                <div class="sprint-detail-card">
+                    <div class="sprint-detail-header">
+                        <div>
+                            <div class="sprint-detail-number">Sprint 25</div>
+                            <div class="sprint-detail-name">Organizational Redesign</div>
+                        </div>
+                    </div>
+                    <div class="dependencies-section">
+                        <div class="dependencies-label">Dependencies</div>
+                        <span class="dependency-tag">FIT & ABC → classification</span>
+                        <span class="dependency-tag">Core Activities → top5</span>
+                        <span class="dependency-tag">Customer Service → journey_map</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 7 -->
+        <div class="module-detail">
+            <div class="module-title-row">
+                <span class="module-number">07</span>
+                <h3 class="module-name">People and Leadership</h3>
+            </div>
+            
+            <div class="sprints-grid">
+                <div class="sprint-detail-card">
+                    <div class="sprint-detail-header">
+                        <div>
+                            <div class="sprint-detail-number">Sprint 26</div>
+                            <div class="sprint-detail-name">Employer Branding & Recruitment</div>
+                        </div>
+                    </div>
+                    <div class="dependencies-section">
+                        <div class="dependencies-label">Dependencies</div>
+                        <span class="dependency-tag">Values → cool_not_cool</span>
+                        <span class="dependency-tag">Dream → one_sentence</span>
+                        <span class="dependency-tag">FIT & ABC → talent_gaps</span>
+                        <span class="dependency-tag">Org Redesign → right_seats</span>
+                    </div>
+                </div>
+
+                <div class="sprint-detail-card">
+                    <div class="sprint-detail-header">
+                        <div>
+                            <div class="sprint-detail-number">Sprint 27</div>
+                            <div class="sprint-detail-name">Set Agile Teams</div>
+                        </div>
+                        <span class="sprint-badge optional">Optional</span>
+                    </div>
+                    <div class="dependencies-section">
+                        <div class="dependencies-label">Dependencies</div>
+                        <span class="dependency-tag">Core Activities → top5</span>
+                        <span class="dependency-tag">Processes → decision_rights</span>
+                        <span class="dependency-tag">FIT & ABC → classification</span>
+                        <span class="dependency-tag">VP → statement</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 8 -->
+        <div class="module-detail">
+            <div class="module-title-row">
+                <span class="module-number">08</span>
+                <h3 class="module-name">Tech and AI</h3>
+            </div>
+            
+            <div class="sprints-grid">
+                <div class="sprint-detail-card">
+                    <div class="sprint-detail-header">
+                        <div>
+                            <div class="sprint-detail-number">Sprint 28</div>
+                            <div class="sprint-detail-name">Top 3 Decisions & Processes to Digitalize</div>
+                        </div>
+                    </div>
+                    <div class="dependencies-section">
+                        <div class="dependencies-label">Dependencies</div>
+                        <span class="dependency-tag">Core Activities → top5</span>
+                        <span class="dependency-tag">Processes → top3_per_activity</span>
+                        <span class="dependency-tag">FIT & ABC → classification</span>
+                        <span class="dependency-tag">VP → statement</span>
+                    </div>
+                </div>
+
+                <div class="sprint-detail-card">
+                    <div class="sprint-detail-header">
+                        <div>
+                            <div class="sprint-detail-number">Sprint 29</div>
+                            <div class="sprint-detail-name">Create the Digital Heart</div>
+                        </div>
+                    </div>
+                    <div class="dependencies-section">
+                        <div class="dependencies-label">Dependencies</div>
+                        <span class="dependency-tag">Org Redesign → strategy_shadow</span>
+                        <span class="dependency-tag">Processes → kpi_scoreboard</span>
+                        <span class="dependency-tag">Digitalization → audit</span>
+                    </div>
+                </div>
+
+                <div class="sprint-detail-card">
+                    <div class="sprint-detail-header">
+                        <div>
+                            <div class="sprint-detail-number">Sprint 30</div>
+                            <div class="sprint-detail-name">Program Overview & Next 12 Months</div>
+                        </div>
+                        <span class="sprint-badge">Final Synthesis</span>
+                    </div>
+                    <div class="dependencies-section">
+                        <div class="dependencies-label">Dependencies</div>
+                        <span class="dependency-tag">Dream → one_sentence</span>
+                        <span class="dependency-tag">Values → core_list</span>
+                        <span class="dependency-tag">Segmentation → primary_target</span>
+                        <span class="dependency-tag">VP → statement</span>
+                        <span class="dependency-tag">Org Redesign → machine_blueprint</span>
+                        <span class="dependency-tag">Digital Heart → blueprint</span>
+                        <span class="dependency-tag">FIT & ABC → a_player_agreements</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEY INSIGHTS SECTION -->
+    <section class="insights-section" id="insights">
+        <div class="section-header">
+            <span class="section-label">Foundation Fields</span>
+            <h2 class="section-title">Most Connected Fields</h2>
+        </div>
+        <p style="color: var(--ft-grey); margin-top: 1rem; max-width: 600px;">These fields are referenced by the most downstream sprints. They are the foundation that cascades through the entire program.</p>
+
+        <div class="insights-grid">
+            <div class="insight-card">
+                <div class="insight-rank">01</div>
+                <div class="insight-field">strategy.vp.statement</div>
+                <div class="insight-name">Value Proposition Statement</div>
+                <div class="insight-usage">Used by <strong>8+ sprints</strong> downstream</div>
+            </div>
+
+            <div class="insight-card">
+                <div class="insight-rank">02</div>
+                <div class="insight-field">identity.values.cool_not_cool</div>
+                <div class="insight-name">Cool/Not-Cool Behaviors</div>
+                <div class="insight-usage">Used by <strong>6+ sprints</strong> downstream</div>
+            </div>
+
+            <div class="insight-card">
+                <div class="insight-rank">03</div>
+                <div class="insight-field">identity.dream.one_sentence</div>
+                <div class="insight-name">One-Sentence Dream</div>
+                <div class="insight-usage">Used by <strong>5+ sprints</strong> downstream</div>
+            </div>
+
+            <div class="insight-card">
+                <div class="insight-rank">04</div>
+                <div class="insight-field">org.activities.top5</div>
+                <div class="insight-name">Top 5 Core Activities</div>
+                <div class="insight-usage">Used by <strong>4+ sprints</strong> downstream</div>
+            </div>
+
+            <div class="insight-card">
+                <div class="insight-rank">05</div>
+                <div class="insight-field">identity.strengths.matrix</div>
+                <div class="insight-name">Individual Strength Matrix</div>
+                <div class="insight-usage">Used by <strong>4+ sprints</strong> downstream</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEPENDENCY MATRIX SECTION -->
+    <section class="matrix-section" id="matrix">
+        <div class="section-header">
+            <span class="section-label">Dependency Analysis</span>
+            <h2 class="section-title">Sprint Dependency Matrix</h2>
+        </div>
+
+        <div class="matrix-container">
+            <table class="matrix-table">
+                <thead>
+                    <tr>
+                        <th>Sprint</th>
+                        <th>Dependencies</th>
+                        <th>Density</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="matrix-sprint-name">Know Thyself</td>
+                        <td class="matrix-deps">0</td>
+                        <td><div class="matrix-bar"><div class="matrix-bar-fill" style="width: 0%"></div></div></td>
+                    </tr>
+                    <tr>
+                        <td class="matrix-sprint-name">Dream</td>
+                        <td class="matrix-deps">1</td>
+                        <td><div class="matrix-bar"><div class="matrix-bar-fill" style="width: 14%"></div></div></td>
+                    </tr>
+                    <tr>
+                        <td class="matrix-sprint-name">Values</td>
+                        <td class="matrix-deps">2</td>
+                        <td><div class="matrix-bar"><div class="matrix-bar-fill" style="width: 28%"></div></div></td>
+                    </tr>
+                    <tr>
+                        <td class="matrix-sprint-name">Team</td>
+                        <td class="matrix-deps">2</td>
+                        <td><div class="matrix-bar"><div class="matrix-bar-fill" style="width: 28%"></div></div></td>
+                    </tr>
+                    <tr>
+                        <td class="matrix-sprint-name">FIT Assessment</td>
+                        <td class="matrix-deps">3</td>
+                        <td><div class="matrix-bar"><div class="matrix-bar-fill" style="width: 42%"></div></div></td>
+                    </tr>
+                    <tr>
+                        <td class="matrix-sprint-name">Cash Position</td>
+                        <td class="matrix-deps">1</td>
+                        <td><div class="matrix-bar"><div class="matrix-bar-fill" style="width: 14%"></div></div></td>
+                    </tr>
+                    <tr>
+                        <td class="matrix-sprint-name">Goals & Priorities</td>
+                        <td class="matrix-deps">2</td>
+                        <td><div class="matrix-bar"><div class="matrix-bar-fill" style="width: 28%"></div></div></td>
+                    </tr>
+                    <tr>
+                        <td class="matrix-sprint-name">Focus & Discipline</td>
+                        <td class="matrix-deps">2</td>
+                        <td><div class="matrix-bar"><div class="matrix-bar-fill" style="width: 28%"></div></div></td>
+                    </tr>
+                    <tr>
+                        <td class="matrix-sprint-name">Performance & Accountability</td>
+                        <td class="matrix-deps">2</td>
+                        <td><div class="matrix-bar"><div class="matrix-bar-fill" style="width: 28%"></div></div></td>
+                    </tr>
+                    <tr>
+                        <td class="matrix-sprint-name">Meeting Rhythm</td>
+                        <td class="matrix-deps">2</td>
+                        <td><div class="matrix-bar"><div class="matrix-bar-fill" style="width: 28%"></div></div></td>
+                    </tr>
+                    <tr>
+                        <td class="matrix-sprint-name">Market Size</td>
+                        <td class="matrix-deps">1</td>
+                        <td><div class="matrix-bar"><div class="matrix-bar-fill" style="width: 14%"></div></div></td>
+                    </tr>
+                    <tr>
+                        <td class="matrix-sprint-name">Segmentation</td>
+                        <td class="matrix-deps">3</td>
+                        <td><div class="matrix-bar"><div class="matrix-bar-fill" style="width: 42%"></div></div></td>
+                    </tr>
+                    <tr>
+                        <td class="matrix-sprint-name">Target Deep Dive</td>
+                        <td class="matrix-deps">2</td>
+                        <td><div class="matrix-bar"><div class="matrix-bar-fill" style="width: 28%"></div></div></td>
+                    </tr>
+                    <tr>
+                        <td class="matrix-sprint-name">Value Proposition</td>
+                        <td class="matrix-deps">4</td>
+                        <td><div class="matrix-bar"><div class="matrix-bar-fill" style="width: 57%"></div></div></td>
+                    </tr>
+                    <tr>
+                        <td class="matrix-sprint-name">VP Testing</td>
+                        <td class="matrix-deps">2</td>
+                        <td><div class="matrix-bar"><div class="matrix-bar-fill" style="width: 28%"></div></div></td>
+                    </tr>
+                    <tr>
+                        <td class="matrix-sprint-name">Product Development</td>
+                        <td class="matrix-deps">3</td>
+                        <td><div class="matrix-bar"><div class="matrix-bar-fill" style="width: 42%"></div></div></td>
+                    </tr>
+                    <tr>
+                        <td class="matrix-sprint-name">Pricing</td>
+                        <td class="matrix-deps">3</td>
+                        <td><div class="matrix-bar"><div class="matrix-bar-fill" style="width: 42%"></div></div></td>
+                    </tr>
+                    <tr>
+                        <td class="matrix-sprint-name">Brand & Marketing</td>
+                        <td class="matrix-deps">3</td>
+                        <td><div class="matrix-bar"><div class="matrix-bar-fill" style="width: 42%"></div></div></td>
+                    </tr>
+                    <tr>
+                        <td class="matrix-sprint-name">Customer Service</td>
+                        <td class="matrix-deps">2</td>
+                        <td><div class="matrix-bar"><div class="matrix-bar-fill" style="width: 28%"></div></div></td>
+                    </tr>
+                    <tr>
+                        <td class="matrix-sprint-name">Route to Market</td>
+                        <td class="matrix-deps">3</td>
+                        <td><div class="matrix-bar"><div class="matrix-bar-fill" style="width: 42%"></div></div></td>
+                    </tr>
+                    <tr>
+                        <td class="matrix-sprint-name">Core Activities</td>
+                        <td class="matrix-deps">3</td>
+                        <td><div class="matrix-bar"><div class="matrix-bar-fill" style="width: 42%"></div></div></td>
+                    </tr>
+                    <tr>
+                        <td class="matrix-sprint-name">Processes & Decisions</td>
+                        <td class="matrix-deps">3</td>
+                        <td><div class="matrix-bar"><div class="matrix-bar-fill" style="width: 42%"></div></div></td>
+                    </tr>
+                    <tr>
+                        <td class="matrix-sprint-name">FIT & ABC Analysis</td>
+                        <td class="matrix-deps">2</td>
+                        <td><div class="matrix-bar"><div class="matrix-bar-fill" style="width: 28%"></div></div></td>
+                    </tr>
+                    <tr>
+                        <td class="matrix-sprint-name">Org Redesign</td>
+                        <td class="matrix-deps">3</td>
+                        <td><div class="matrix-bar"><div class="matrix-bar-fill" style="width: 42%"></div></div></td>
+                    </tr>
+                    <tr>
+                        <td class="matrix-sprint-name">Employer Branding</td>
+                        <td class="matrix-deps">4</td>
+                        <td><div class="matrix-bar"><div class="matrix-bar-fill" style="width: 57%"></div></div></td>
+                    </tr>
+                    <tr>
+                        <td class="matrix-sprint-name">Agile Teams</td>
+                        <td class="matrix-deps">4</td>
+                        <td><div class="matrix-bar"><div class="matrix-bar-fill" style="width: 57%"></div></div></td>
+                    </tr>
+                    <tr>
+                        <td class="matrix-sprint-name">Digitalization</td>
+                        <td class="matrix-deps">4</td>
+                        <td><div class="matrix-bar"><div class="matrix-bar-fill" style="width: 57%"></div></div></td>
+                    </tr>
+                    <tr>
+                        <td class="matrix-sprint-name">Digital Heart</td>
+                        <td class="matrix-deps">3</td>
+                        <td><div class="matrix-bar"><div class="matrix-bar-fill" style="width: 42%"></div></div></td>
+                    </tr>
+                    <tr>
+                        <td class="matrix-sprint-name">Program Overview</td>
+                        <td class="matrix-deps">7</td>
+                        <td><div class="matrix-bar"><div class="matrix-bar-fill" style="width: 100%"></div></div></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-brand">
+            <img src="Designs/02. logos/FastTrack_F_White.png" alt="Fast Track" class="footer-logo">
+            <span class="footer-tagline">No Grit. No Growth.</span>
+        </div>
+        <span class="footer-copy">© 2026 Fast Track. Sprint Connections Map.</span>
+    </footer>
+
+    <!-- TOOLTIP -->
+    <div class="tooltip" id="tooltip">
+        <div class="tooltip-title"></div>
+        <div class="tooltip-content"></div>
+    </div>
+
+    <script>
+        // Module Sprint Data
+        const moduleData = {
+            1: {
+                name: 'Module 1: Individual and Company Identity',
+                sprints: [
+                    { num: 1, name: 'Know Thyself', starting: true },
+                    { num: 2, name: 'Dream' },
+                    { num: 3, name: 'Values' },
+                    { num: 4, name: 'Team' },
+                    { num: 5, name: 'FIT Assessment' }
+                ]
+            },
+            2: {
+                name: 'Module 2: Core Elements of Performance',
+                sprints: [
+                    { num: 6, name: 'Cash Position' },
+                    { num: 7, name: 'Creating Energy', optional: true },
+                    { num: 8, name: 'Goals & Priorities' },
+                    { num: 9, name: 'Focus & Discipline' },
+                    { num: 10, name: 'Performance & Accountability' },
+                    { num: 11, name: 'Meeting Rhythm' }
+                ]
+            },
+            3: {
+                name: 'Module 3: Understanding the Market',
+                sprints: [
+                    { num: 12, name: 'Market Size' },
+                    { num: 13, name: 'Segmentation' }
+                ]
+            },
+            4: {
+                name: 'Module 4: Strategy Development',
+                sprints: [
+                    { num: 14, name: 'Target Deep Dive' },
+                    { num: 15, name: 'Value Proposition' },
+                    { num: 16, name: 'VP Testing' }
+                ]
+            },
+            5: {
+                name: 'Module 5: Strategy Execution',
+                sprints: [
+                    { num: 17, name: 'Product Development' },
+                    { num: 18, name: 'Pricing' },
+                    { num: 19, name: 'Brand & Marketing' },
+                    { num: 20, name: 'Customer Service', optional: true },
+                    { num: 21, name: 'Route to Market' }
+                ]
+            },
+            6: {
+                name: 'Module 6: Organisational Structure',
+                sprints: [
+                    { num: 22, name: 'Core Activities' },
+                    { num: 23, name: 'Processes & Decisions' },
+                    { num: 24, name: 'FIT & ABC Analysis' },
+                    { num: 25, name: 'Org Redesign' }
+                ]
+            },
+            7: {
+                name: 'Module 7: People and Leadership',
+                sprints: [
+                    { num: 26, name: 'Employer Branding' },
+                    { num: 27, name: 'Agile Teams', optional: true }
+                ]
+            },
+            8: {
+                name: 'Module 8: Tech and AI',
+                sprints: [
+                    { num: 28, name: 'Digitalization' },
+                    { num: 29, name: 'Digital Heart' },
+                    { num: 30, name: 'Program Overview' }
+                ]
+            }
+        };
+
+        // Show module sprints
+        function showModuleSprints(moduleNum) {
+            const module = moduleData[moduleNum];
+            const expansion = document.getElementById('sprintExpansion');
+            const title = document.getElementById('expansionTitle');
+            const visual = document.getElementById('sprintFlowVisual');
+            
+            // Update title
+            title.textContent = module.name;
+            
+            // Build sprint flow
+            let html = '';
+            module.sprints.forEach((sprint, index) => {
+                const classes = [];
+                if (sprint.starting) classes.push('starting');
+                if (sprint.optional) classes.push('optional');
+                
+                html += `
+                    <div class="sprint-node">
+                        <div class="sprint-dot ${classes.join(' ')}">${sprint.num}</div>
+                        <div class="sprint-node-name">${sprint.name}</div>
+                    </div>
+                `;
+                
+                // Add arrow between sprints (not after last)
+                if (index < module.sprints.length - 1) {
+                    html += `
+                        <div class="sprint-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </div>
+                    `;
+                }
+            });
+            
+            visual.innerHTML = html;
+            
+            // Show expansion
+            expansion.classList.add('visible');
+            
+            // Update active module circle
+            document.querySelectorAll('.module-circle').forEach(c => c.classList.remove('active'));
+            document.querySelector(`.module-circle[data-module="${moduleNum}"]`).classList.add('active');
+            
+            // Scroll to expansion
+            setTimeout(() => {
+                expansion.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+        }
+
+        // Close expansion
+        function closeExpansion() {
+            const expansion = document.getElementById('sprintExpansion');
+            expansion.classList.remove('visible');
+            document.querySelectorAll('.module-circle').forEach(c => c.classList.remove('active'));
+        }
+
+        // Loading bar animation
+        const loadingBar = document.getElementById('loadingBar');
+        let progress = 0;
+        const loadInterval = setInterval(() => {
+            progress += Math.random() * 30;
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(loadInterval);
+                setTimeout(() => {
+                    loadingBar.style.opacity = '0';
+                }, 300);
+            }
+            loadingBar.style.width = progress + '%';
+        }, 100);
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Animate bars on scroll
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('.matrix-bar-fill').forEach(bar => {
+                        const width = bar.style.width;
+                        bar.style.width = '0%';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 100);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        const matrixSection = document.querySelector('.matrix-section');
+        if (matrixSection) {
+            observer.observe(matrixSection);
+        }
+
+        // Header scroll effect
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                header.style.background = 'rgba(0, 0, 0, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'var(--ft-black)';
+                header.style.backdropFilter = 'none';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Auto-show first module on load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Optional: auto-expand first module
+            // showModuleSprints(1);
+        });
+    </script>
+</body>
+</html>
